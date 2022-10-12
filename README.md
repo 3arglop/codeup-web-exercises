@@ -1,1 +1,1 @@
-# icon-web-exercises
+# icon cohort
