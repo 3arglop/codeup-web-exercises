@@ -252,15 +252,25 @@ calculateTotalAgain(randomNumbers, total);
     // }}
 
 
-let doesUserConfirm = confirm("Would you like to enter a number?");
 
-   if(doesUserConfirm) {
-       let userNum = parseFloat(prompt("What is your number?"));
-       if(!isNaN(userNum)) {
-       alert(userNum % 2 == 0 ? "Number is even" : "Number is odd");
-       alert(userNum > 0 ? "Number is positive" : "Number is negative");
-       alert("Your number + 100 = " + (userNum + 100));
-   } else {
-       alert("Oh, oh! Wrong input. Please enter a number!")
-   }}
+    function numberGame() {
+    let doesUserConfirm = confirm("Would you like to enter a number?");
 
+    if (doesUserConfirm) {
+        let userNum = parseFloat(prompt("What is your number?"));
+        if (!isNaN(userNum)) {
+            alert(userNum % 2 == 0 ? "Number is even" : "Number is odd");
+            alert(userNum > 0 ? "Number is positive" : "Number is negative");
+            alert("Your number + 100 = " + (userNum + 100));
+        } else {
+            alert("Oh, oh! Wrong input. Please enter a number!")
+        }
+    }
+}
+
+
+    function newGame() {
+        numberGame();
+    }
+
+    newGame();
