@@ -131,3 +131,11 @@ renderPyramid();
 // 15
 // 10
 // 5
+
+const backwardsLoop = () => {
+    for(let i = 100; i >= 5; i -=5) {
+        console.log(i);
+    }
+}
+
+backwardsLoop();
