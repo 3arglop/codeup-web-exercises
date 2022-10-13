@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Types, Operators and Variables</title>
+</head>
+<body>
+
+<h1>Data Types, Operators and Variables Exercises</h1>
+
+
+<script>
+
+"use strict";
+
+console.log("Hello World");
+
+
+//PRIMITIVE TYPES
+
+// TODO: Identify the data type of the following values:
+// 99.9
+
+console.log(99.9);
+console.log('number');
+
+// "false"
+
+console.log('"false"');
+console.log('string');
+
+// false
+
+console.log(false);
+console.log('boolean');
+
+// '0'
+
+console.log("'0'");
+console.log('string');
+
+// 0
+
+console.log(0);
+console.log('number');
+
+// true
+
+console.log(true);
+console.log('boolean');
+
+// 'true'
+
+console.log("'true'");
+console.log('string');
+
+
+/**************************************************/
+
+
+//OPERATORS
+
+// TODO: For each of the following code blocks, read the expression and predict what the result of evaluating it would be, then execute the expression in the Chrome console.
+//
+//
+// '1' + 2
+
+console.log('1' + 2);
+// >> 12
+
+// typeof '1' + 2
+
+console.log(typeof '1' + 2);
+// >> string2
+
+// 6 % 4
+
+console.log(6 % 4);
+// >> 2
+
+// '3 + 4 is ' + 3 + 4
+// // how could you make this produce the correct output?
+
+console.log('3 + 4 is ' + 3 + 4);
+// >> "3 + 4 is 34"
+
+//CORRECT WAY WOULD BE:
+console.log('3 + 4 is ' + (3 + 4));
+// >> "3 + 4 is 7"
+
+// 0 < 0
+
+console.log(0 < 0);
+// >> false
+
+// 'false' == false
+
+console.log('false' == false);
+// >> false
+
+// true == 'true'
+
+console.log(true == 'true');
+// >> false
+
+// 5 >= -5
+
+console.log(5 >= -5);
+// >> true
+
+// !false || false
+
+console.log(!false || false);
+// >> true
+
+// true || "42"
+
+console.log(true || "42");
+// >> true
+
+// !true && !false
+
+console.log(!true && !false);
+// >> false
+
+// 6 % 5
+
+console.log(6 % 5);
+// >> 1
+
+// 5 < 4 && 1 === 1
+
+console.log(5 < 4 && 1 === 1);
+// >> false
+
+// typeof 'codeup' === 'string'
+
+console.log(typeof 'codeup' === 'string');
+// >> true
+
+// 'codeup' === 'codeup' && 'codeup' === 'Codeup'
+
+console.log('codeup' === 'codeup' && 'codeup' === 'Codeup');
+// >> false
+
+// 4 >= 0 && 1 !== '1'
+
+console.log(4 >= 0 && 1 != '1');
+// >> false
+
+// 6 % 3 === 0
+
+console.log(6 % 2 === 0);
+// >> true
+
+// 5 % 2 !== 0
+
+console.log(5 % 2 !== 0);
+// >> true
+
+/*********************************************/
+
+//WORKING WITH DATA TYPES, OPERATORS, AND VARIABLES
+
+var a = 1;
+var b = a++;
+var c = ++a; //VARIABLE a IS TECHNICALLY 2 NOW DUE TO PRE-INCREMENT GIVEN ON VARIABLE b
+// what is the value of a, b, and c?
+
+console.log(a); // 3
+console.log(b); // 1
+console.log(c); // 3
+
+var d = "hello";
+var e = false;
+
+console.log(d); // hello
+console.log(e); // false
+
+d++;
+console.log(d); // NaN
+e++;
+console.log(e); // 1
+
+var perplexed; // perplexed is undefined (no value is assigned)
+perplexed = perplexed + 2;
+console.log(perplexed); // NaN
+
+var price = 2.7;
+price.toFixed(2);
+console.log(price); // 2.7
+console.log(price.toFixed(2)); //2.70
+
+var priceTwo = "2.7";
+// priceTwo.toFixed(2);
+console.log(priceTwo); // "2.7"
+// console.log(priceTwo.toFixed(2)); // "2.70"
+
+//--------------------------------------------------//
+
+// isNaN(0)
+
+console.log(isNaN(0));
+// >> false
+
+// isNaN(1)
+
+console.log(isNaN(1));
+// >> false
+
+// isNaN("")
+
+console.log(isNaN(""));
+// >> false
+
+// isNaN("string")
+
+console.log(isNaN("string"));
+// >> true
+
+// isNaN("0")
+
+console.log(isNaN("0"));
+// >> false
+
+// isNaN("1")
+
+console.log(isNaN("1"));
+// >> false
+
+// isNaN("3.145")
+
+console.log(isNaN("3.145"));
+// >> false
+
+// isNaN(Number.MAX_VALUE)
+
+console.log(isNaN(Number.MAX_VALUE));
+// >> false
+
+// isNaN(Infinity)
+
+console.log(isNaN(Infinity));
+// >> false
+
+// isNaN("true")
+
+console.log(isNaN("true"));
+// >> true
+
+// isNaN(true)
+
+console.log(isNaN(true));
+// >> false
+
+// isNaN("false")
+
+console.log(isNaN("false"));
+// >> true
+
+// isNaN(false)
+
+console.log(isNaN(false));
+// >> false
+
+// // to illustrate why the isNaN() function is needed:
+// NaN == NaN
+
+console.log(NaN == NaN);
+// >> false
+
+//---------------------------------//
+
+// !true
+
+console.log(!true);
+// >> false
+
+// !false
+
+console.log(!false);
+// >> true
+
+// !!true
+
+console.log(!!true);
+// >> true
+
+// !!false
+
+console.log(!!false);
+// >> false
+
+// !!0
+
+console.log(!!0);
+// >> false
+
+// !!-0
+
+console.log(!!-0);
+// >> false
+
+// !!1
+
+console.log(!!1);
+// >> true
+
+// !!-1
+
+console.log(!!-1);
+// >> true
+
+// !!0.1
+
+console.log(!!0.1);
+// >> true
+
+// !!"hello"
+
+console.log(!!"hello");
+// >> true
+
+// !!""
+
+console.log(!!"");
+// >> false
+
+// !!''
+
+console.log(!!'');
+// >> false
+
+// !!"false"
+
+console.log(!!"false");
+// >> true
+
+// !!"0"
+
+console.log(!!"0");
+// >> true
+
+//-------------------------------------------//
+
+var sample = "Hello Codeup";
+
+// TODO: Use .length to find the number of characters in the string. Try to make the sample string all upper or all lower case. Update the variable sample via concatenation so that it contains "Hello Codeup Students". Replace "Students" with "Class". Find the index of "c" using .indexOf(). What do you observe? Find the index of "C" using .indexOf().Retrieve a substring that contains only the word "Codeup" by using indexOf() and substring().
+
+console.log(sample.length);
+console.log(sample.toUpperCase());
+console.log(sample.toLowerCase());
+console.log(sample + " Students");
+console.log(sample + " Class");
+console.log(sample.indexOf("c"));
+console.log(sample.indexOf("C"));
+console.log(sample.substring(6, 12));
+
+//----------------------------------------//
+
+// TODO: Write some JavaScript code, that is, variables and operators, to describe the following scenarios. Do not worry about the real operations to get the values, the goal of these exercises is to understand how real world conditions can be represented with code.
+
+//TODO: You have rented some movies for your kids: The little mermaid (for 3 days), Brother Bear (for 5 days, they love it), and Hercules (1 day, you don't know yet if they're going to like it). If price for a movie per day is $3, how much will you have to pay?
+
+//TODO: Suppose you're working as a contractor for 3 companies: Google, Amazon and Facebook, they pay you a different rate per hour. Google pays $400, Amazon $380, and Facebook $350. How much will you receive in payment for this week? You worked 10 hours for Facebook, 6 hours for Google and 4 hours for Amazon.
+
+//TODO: A student can be enrolled in a class only if the class is not full and the class schedule does not conflict with her current schedule.
+
+//TODO: A product offer can be applied only if a person buys more than 2 items, and the offer has not expired. Premium members do not need to buy a specific amount of products.
+
+
+</script>
+</body>
+</html>
