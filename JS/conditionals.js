@@ -102,19 +102,19 @@ console.log(leastFavColor("pink"));
 
 function analyzeColor(colorInput) {
     if (colorInput === "blue") {
-        alert("Blue is the color of the sky");
+        return "Blue is the color of the sky";
     } else if (colorInput === "red") {
-        alert("Strawberries are red");
+        return "Strawberries are red";
     } else if (colorInput === "green") {
-        alert("Green like the forest");
+        return "Green like the forest";
     } else if (colorInput === "yellow") {
-        alert("Yellow sunflowers, yellow sun");
+        return "Yellow sunflowers, yellow sun";
     } else if (colorInput === "indigo") {
-        alert("Indigo is a pretty color");
+        return "Indigo is a pretty color";
     } else if (colorInput === "violet") {
-        alert("Violet like lavender")
+        return "Violet like lavender";
     } else {
-        alert(`I don't know anything about the color ${colorInput}.`);
+        return `I don't know anything about the color ${colorInput}.`;
     }
 }
 
