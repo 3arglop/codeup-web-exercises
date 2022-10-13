@@ -268,7 +268,6 @@ calculateTotalAgain(randomNumbers, total);
     }
 }
 
-
     function newGame() {
         numberGame();
     }
