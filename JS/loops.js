@@ -82,6 +82,24 @@ renderTable(2);
         }
     }
 
+// DYNAMIC HTML
+//     const isEvenOdd = () => {
+//         let dynamicHTML = '';
+//         for(let i = 0; 0 < 10; i++) {
+//             let randomNum = Math.floor(Math.random() * (200 - 20) + 20);
+//             // console.log(randomNum);
+//
+//             if(randomNum % 2 == 0) {
+//                 dynamicHTML += `<p>${randomNum} is EVEN!</p>`
+//             } else {
+//                 dynamicHTML += `<p>${randomNum} is ODD!</p>`
+//             }
+//         }
+//         $('#evenOddBody').html(`<h4>Random Numbers + Loops</h4>` + dynamicHTML);
+//     }
+//
+//     isEvenOdd();
+
 //TODO: Create a for loop that uses console.log to create the output shown below.
 // 1
 // 22
@@ -132,6 +150,7 @@ renderPyramid();
 // 10
 // 5
 
+
 const backwardsLoop = () => {
     for(let i = 100; i >= 5; i -=5) {
         console.log(i);
@@ -139,3 +158,16 @@ const backwardsLoop = () => {
 }
 
 backwardsLoop();
+
+
+//DYNAMIC HTML
+const renderBackwards = () => {
+    let string = '';
+    for (let i = 100; i >= 5; i -= 5) {
+        string += `<p>${i}</p>`
+        console.log(string);
+    }
+    $('#backBody').html(`<h4>Looping backwards!</h4>` + string);
+}
+
+renderBackwards();
