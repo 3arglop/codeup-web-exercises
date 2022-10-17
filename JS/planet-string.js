@@ -33,7 +33,7 @@
 
     planetsArray.unshift('<ul>');
     planetsArray.push('</ul>');
-    planetsString = planetsArray.join('<br>');
+    planetsString = planetsArray.join('<li>');
     console.log(planetsString);
 
 
