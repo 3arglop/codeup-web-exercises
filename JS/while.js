@@ -45,12 +45,3 @@ let allCones = Math.floor(Math.random() * 50) + 50;
     }
     while(allCones !== 0)
 console.log("YAY, I sold em all!");
-
-
-/*
-
-for(let i = 0; i < allCones; i++) {
-    // This expression will generate a random number between 1 and 5
-    let oneToFive = Math.floor(Math.random() * 5) + 1;
-
- */
