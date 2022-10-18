@@ -24,11 +24,3 @@ if(userInput % 2 !== 0) {
         console.log(`Here is an ODD number: ${i}`);
     }
 }
-
-
-/*
-if(i === numberToStopAt) {
-           console.log(`YIKES! Skipping number: ${numberToStopAt}`);
-           break;
-       }
- */
