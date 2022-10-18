@@ -76,8 +76,12 @@
     console.log(second([2, 4, 6, 8, 10]));
 
     const last = (array) => {
-        return array.
+        return array[array.length - 1];
     }
+
+    console.log(last([2, 4, 6, 8, 10, 12]));
+    console.log(last([1, 2, 3, 4, 5]));
+    console.log(last([10, 20, 30, 40, 50]));
 
 
 })();
