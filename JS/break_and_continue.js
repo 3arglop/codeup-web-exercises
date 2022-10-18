@@ -19,6 +19,7 @@ if(userInput % 2 !== 0) {
     for(let i = 1; i < 50; i+=2) {
         if(i === numberToStopAt) {
             console.log(`YIKES! Skipping number: ${numberToStopAt}`);
+            continue;
         }
         console.log(`Here is an ODD number: ${i}`);
     }
