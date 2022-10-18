@@ -31,10 +31,13 @@
     * string, and <li> tags around each planet.
     */
 
-    planetsArray.unshift('<ul>');
-    planetsArray.push('</ul>');
-    planetsString = planetsArray.join('<li>');
-    console.log(planetsString);
 
+    let newStr = [];
+    planetsArray.forEach(function(planet) {
+        newStr.push(`<li>${planet}</li>`)
+    });
+    newStr.unshift('<ul>');
+    newStr.push('</ul>');
+    console.log(newStr.join(' '));
 
 })();
