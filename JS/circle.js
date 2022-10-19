@@ -18,8 +18,9 @@
             if(doRounding === true) {
                 let rounding = Math.ceil(this.getArea());
                 console.log(`Area of a circle with radius: ${this.radius} is: ${rounding}`);
+            } else {
+                console.log(`Area of circle with radius: ${this.radius} is: ${this.getArea()}`);
             }
-            console.log(`Area of circle with radius: ${this.radius} is: ${this.getArea()}`)
         }
     };
 
