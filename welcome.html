@@ -10,23 +10,139 @@
     <!--GOOGLE FONTS-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Fuzzy Bubbles', cursive;
-            text-align: center;
-            background-image: url("IMG/kelsey-curtis-1kwz2w4dnjs-unsplash.jpg");
-            background-size: cover;
+            font-family: 'Rubik', sans-serif;
+            background: rgb(97,167,17);
+            background: linear-gradient(315deg, rgba(97,167,17,1) 0%, rgba(14,129,201,1) 100%);
+            background-repeat: no-repeat;
             min-height: 100vh;
+            background-position: center center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .visionTitle {
+            text-align: center;
+        }
+        div img {
+            height: 300px;
+            width: 600px;
+        }
+        .grid-container {
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 200px 200px;
+            grid-row: auto;
+            grid-column-gap: 450px;
+            grid-row-gap: 50px
+        }
+        .grid-container#img {
+            margin-left: 85px;
+        }
+        table {
+            display: flex;
+            justify-content: center;
+        }
+        .products h2 {
+            text-align: center;
+        }
+        th {
+            font-size: 2rem;
+        }
+        td {
+            font-size: 1.25rem;
+        }
+        .footer {
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <h1>Welcome to HTML & CSS</h1>
-    <p>Hello, World!</p>
+<div class="header" id="top">
+    <h1>Welcome to Veridian Dynamics!</h1>
+    <p>At Veridian Dynamics, <strong>we</strong> solve <em>your</em> problems with <strong><em>technology</em></strong>.</p>
+</div>
 
+<hr>
+
+<div class="container">
+    <section id="coreValues">
+        <h2>Core Values</h2>
+        <ul>
+            <li>Competence</li>
+            <li>Involvement</li>
+            <li>Technology</li>
+        </ul>
+    </section>
+
+    <section id="ourProcess">
+        <h2>Our Process</h2>
+        <ol>
+            <li>Plan</li>
+            <li>Evaluate</li>
+            <li>Implement</li>
+        </ol>
+    </section>
+
+    <section id="vision">
+        <h2>2020 Vision</h2>
+        <ul>
+            <li>Become #1 in Technology</li>
+            <li>Increase Success by 20%</li>
+            <li>Increase Business by 30%</li>
+        </ul>
+    </section>
+</div>
+
+<hr>
+
+<h1 class="visionTitle">Company Vision</h1>
+<div class="grid-container" id="img">
+
+    <div><img src="IMG/thisisengineering-raeng-8hgmG03spF4-unsplash.jpg" alt=""></div>
+    <div><img src="IMG/marvin-meyer-SYTO3xs06fU-unsplash.jpg" alt=""></div>
+    <div><img src="IMG/thisisengineering-raeng-ZPeXrWxOjRQ-unsplash.jpg" alt=""></div>
+    <div><img src="IMG/luca-bravo-XJXWbfSo2f0-unsplash.jpg" alt=""></div>
+
+</div>
+
+<br>
+
+<div class="products">
+    <h2>Our Product</h2>
+    <table>
+        <tr>
+            <th>Plan</th>
+            <th>Price</th>
+            <th>Features</th>
+        </tr>
+        <tr>
+            <td>Starter</td>
+            <td>$99</td>
+            <td>Base Technology</td>
+        </tr>
+        <tr>
+            <td>Advanced</td>
+            <td>$199</td>
+            <td>Additional Features</td>
+        </tr>
+        <tr>
+            <td>Premium</td>
+            <td>$499</td>
+            <td>Unlimited Support</td>
+        </tr>
+    </table>
+</div>
+
+<div class="footer">
+    <p><em>All products come with our quality guarantee™.</em></p>
+    <a href="#top">Go to the top of the page.</a>
+</div>
 
 </body>
 </html>
