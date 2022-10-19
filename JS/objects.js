@@ -14,11 +14,23 @@
 
     const person = {
         firstName: "Captain",
-        lastName: "America"
+        lastName: "America",
+        message: {
+            sayHola: function () {
+                return `Hola from ${person.firstName} ${person.lastName}`;
+            },
+            sayAdios: function () {
+                return `Adios from ${person.firstName} ${person.lastName}`;
+            }
+        }
+
     };
 
     console.log(person.firstName);
     console.log(person.lastName);
+    console.log(person.message.sayHola());
+    console.log(person.message.sayAdios());
+
 
     /**
      * TODO:
@@ -29,6 +41,14 @@
      * Example
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
+
+
+    person.sayMessage = function() {
+        return `Dude, it's ${person.firstName} ${person.lastName}! Get my camera!!`;
+    }
+
+    console.log(person.sayMessage());
+
 
     function sayHello(name) {
         console.log(`Hello from ${name.firstName} ${name.lastName}!`);
@@ -163,7 +183,7 @@
      */
 
     books.forEach(function(book) {
-        console.log(`Book # ${this}. Title: ${book.title}. Author: ${book.author.firstName} ${book.author.lastName}`);
+        console.log(`Book #${books.indexOf(book) + 1}. Title: ${book.title}. Author: ${book.author.firstName} ${book.author.lastName}`);
     });
 
 
@@ -171,7 +191,7 @@
     const renderBookData = (data) => {
         let html = '';
         for(let i = 0; i < data.length; i++) {
-            html += `<p>Book #${this}</p>
+            html += `<p>Book #${i+1}</p>
                     <h3>Title: ${data[i].title}</h3>
                     <p>Author: ${data[i].author.firstName} ${data[i].author.lastName}</p>
                     <span>********************<span>`
@@ -192,13 +212,49 @@
      *   `showBookInfo` function.
      */
 
-    const trialBook = ('Green Ham and Eggs', 'Dr. Seuss');
+    const trialBookTitle = ("Charlotte's Web");
+    const trialBookAuthor = ("E.B. White")
 
-    function createBook(title, author) {
 
+    const createBook = (title, author) => {
+        author = author.split(" ");
+        let newBook = {
+            title: title,
+            author: {
+                firstName: author[0],
+                lastName: author[1]
+            }
+        }
+        return newBook;
     }
 
-    createBook(trialBook);
+    // console.log(createBook(trialBookTitle, trialBookAuthor));
+
+    //TRIAL ONE
+    books.push(createBook(trialBookTitle, trialBookAuthor));
+    // console.log(books);
+    // console.table(books);
+    renderBookData(books);
+
+    //TRIAL TWO
+    books.push(createBook("All by Myself", "Mercer Mayer"));
+    renderBookData(books);
+
+    //TRIAL THREE
+    books.push(createBook("Don't Let the Pigeon Drive the Bus!", "Mo Williams"));
+    renderBookData(books);
+
+    //TRIAL FOUR
+    const treeBook = {
+        title: "The Giving Tree",
+        author: {
+            firstName: "Shef",
+            lastName: "Silverstein"
+        }
+    }
+
+    books.push(treeBook);
+    renderBookData(books);
 
 
 })();
