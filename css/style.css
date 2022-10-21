@@ -1,0 +1,4 @@
+/*THIS WILL NOT WORK BC THE STYLE SCRIPT IN THE HTML FILE OVERPOWERS THE EXTERNAL CSS*/
+.fancy-header {
+    color: purple;
+}
