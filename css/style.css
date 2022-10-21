@@ -7,50 +7,103 @@
 
 /*SELECTORS AND PROPERTIES*/
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');*/
 
-.fancy-header {
-    color: purple;
-    text-align: center;
-}
+/*.fancy-header {*/
+/*    color: purple;*/
+/*    text-align: center;*/
+/*}*/
 
-h1, h2{
-    color: dodgerblue;
-    text-decoration: underline;
-}
+/*h1, h2{*/
+/*    color: dodgerblue;*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*body {*/
+/*    background-color: black;*/
+/*    font-family: 'Pacifico', cursive;*/
+/*    color: white;*/
+/*}*/
+
+/*ul {*/
+/*    list-style: none;*/
+/*}*/
+
+/*td {*/
+/*    padding: 3rem;*/
+/*    font-size: 2rem;*/
+/*}*/
+
+/*tr {*/
+/*    padding: 1.5rem;*/
+/*    font-size: 3rem;*/
+/*}*/
+
+/*a:link {*/
+/*    color: yellow;*/
+/*}*/
+
+/*a:visited {*/
+/*    color: limegreen;*/
+/*}*/
+
+/*a:hover {*/
+/*    color: hotpink;*/
+/*}*/
+
+/*a:active {*/
+/*    color: orangered;*/
+/*}*/
+
+/***************************************************/
+
+/*REFACTORED WITH MY PERSONAL CSS*/
 
 body {
-    background-color: black;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Rubik', sans-serif;
+    background: rgb(97,167,17);
+    background: linear-gradient(315deg, rgba(97,167,17,1) 0%, rgba(14,129,201,1) 100%);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-position: center center;
+}
+.fancy-header {
+    color: deepskyblue;
+}
+.header p {
+    color: midnightblue;
+}
+.container h2 {
     color: white;
 }
-
-ul {
-    list-style: none;
+.products h2 {
+    margin-left: 0.5rem;
+    color: yellow;
 }
-
-td {
-    padding: 3rem;
+h1 {
+    color: greenyellow;
+}
+th {
     font-size: 2rem;
+    color: mediumspringgreen;
 }
-
-tr {
-    padding: 1.5rem;
-    font-size: 3rem;
+td {
+    font-size: 1.25rem;
+    padding: 2rem;
+    line-height: 0;
 }
-
+p {
+    color: white;
+}
 a:link {
     color: yellow;
 }
-
 a:visited {
-    color: limegreen;
+    color: black;
 }
-
 a:hover {
     color: hotpink;
 }
-
 a:active {
     color: orangered;
 }
