@@ -1,4 +1,56 @@
 /*THIS WILL NOT WORK BC THE STYLE SCRIPT IN THE HTML FILE OVERPOWERS THE EXTERNAL CSS*/
+/*.fancy-header {*/
+/*    color: purple;*/
+/*}*/
+
+/**************************************/
+
+/*SELECTORS AND PROPERTIES*/
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .fancy-header {
     color: purple;
+    text-align: center;
+}
+
+h1, h2{
+    color: dodgerblue;
+    text-decoration: underline;
+}
+
+body {
+    background-color: black;
+    font-family: 'Pacifico', cursive;
+    color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+td {
+    padding: 3rem;
+    font-size: 2rem;
+}
+
+tr {
+    padding: 1.5rem;
+    font-size: 3rem;
+}
+
+a:link {
+    color: yellow;
+}
+
+a:visited {
+    color: limegreen;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+a:active {
+    color: orangered;
 }
