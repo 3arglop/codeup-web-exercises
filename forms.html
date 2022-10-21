@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML Forms</title>
+
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: radial-gradient(circle, #c3b299, #ad8e7d, #946c68, #764d57, #523249);
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Libre Baskerville', serif;
+            color: #DBEBC0;
+            text-shadow: 0 0 3px saddlebrown, 0 0 5px saddlebrown;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin: 0 0 1rem 38%;
+            padding: 1rem;
+        }
+        form label {
+            font-size: 1.5rem;
+        }
+        .email, .password {
+            font-size: 1rem;
+        }
+        form textarea {
+            height: 100px;
+            width: 375px;
+        }
+        form section {
+            margin: 1rem 0 1rem 0;
+        }
+        form select {
+            width: 25%;
+            font-family: 'Libre Baskerville', serif;
+        }
+        button {
+            font-family: 'Libre Baskerville', serif;
+        }
+        a {
+            color: white;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Register With Us</h1>
+
+<hr>
+
+<form method="POST" action="https://request-inspector.glitch.me/">
+
+    <!--INPUTS-->
+    <section>
+    <label for="email" class="email">Email</label>
+    <input id="email" name="email" type="text">
+    <br>
+
+    <label for="password" class="password">Password</label>
+    <input id="password" name="password" type="password">
+    <br>
+    </section>
+
+    <!--TEXT AREA-->
+    <section>
+    <label>Bio</label>
+    <br>
+    <textarea name="bio" placeholder="Tell me about yourself..."></textarea>
+    <br>
+    </section>
+
+    <!--RADIOS-->
+    <section>
+    <label>How did you hear about us?</label>
+    <br>
+    <input type="radio" name="hau" value="billboard">Billboard
+    <br>
+    <input type="radio" name="hau" value="radio">Radio Advertisement
+    <br>
+    <input type="radio" name="hau" value="internet">Internet Advertisement
+    <br>
+    <input type="radio" name="hau" value="friend">Friend
+    <br>
+    <input type="radio" name="hau" value="other">Other
+    <br>
+    </section>
+
+    <!--DROPDOWN-->
+    <section>
+    <label>What Web Browser are you using?</label>
+    <br>
+    <select name="web-browser">
+        <option value="google">Google</option>
+        <option value="mozilla">Firefox</option>
+        <option value="safari">Safari</option>
+        <option value="other">Other</option>
+    </select>
+    </section>
+
+    <br>
+
+    <!--BUTTON-->
+    <button class="btn" type="submit">Submit</button>
+
+</form>
+
+<br>
+
+<a href="welcome.html">Back to Main</a>
+
+
+</body>
+</html>
