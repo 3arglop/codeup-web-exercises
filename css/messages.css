@@ -1,3 +1,15 @@
+/*DECLARING VARIABLES*/
+:root {
+    --info-bg-color: blue;
+    --info-text-color: lightskyblue;
+    --success-bg-color: green;
+    --success-text-color: lightgreen;
+    --warning-bg-color: goldenrod;
+    --warning-text-color: yellow;
+    --error-bg-color: darkred;
+    --error-text-color: indianred;
+}
+
 body, html {
     height: 100%;
     width: 100%;
@@ -13,25 +25,41 @@ body, html {
 }
 
 .message-info {
-    background-color: lightskyblue;
-    border: 1px solid blue;
-    color: blue;
+    /*background-color: lightskyblue;*/
+    /*border: 1px solid blue;*/
+    /*color: blue;*/
+
+    background-color: var(--info-text-color);
+    border: 1px solid var(--info-bg-color);
+    color: var(--info-bg-color);
 }
 
 .message-success {
-    background-color: lightgreen;
-    border: 1px solid green;
-    color: green;
+    /*background-color: lightgreen;*/
+    /*border: 1px solid green;*/
+    /*color: green;*/
+
+    background-color: var(--success-text-color);
+    border: 1px solid var(--success-bg-color);
+    color: var(--success-bg-color);
 }
 
 .message-warning {
-    background-color: yellow;
-    border: 1px solid goldenrod;
-    color: goldenrod;
+    /*background-color: yellow;*/
+    /*border: 1px solid goldenrod;*/
+    /*color: goldenrod;*/
+
+    background-color: var(--warning-text-color);
+    border: 1px solid var(--warning-bg-color);
+    color: var(--warning-bg-color);
 }
 
 .message-error {
-    background-color: indianred;
-    border: 1px solid darkred;
-    color: darkred;
+    /*background-color: indianred;*/
+    /*border: 1px solid darkred;*/
+    /*color: darkred;*/
+
+    background-color: var(--error-text-color);
+    border: 1px solid var(--error-bg-color);
+    color: var(--error-bg-color);
 }
