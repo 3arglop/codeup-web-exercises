@@ -28,3 +28,70 @@ em {
 .article>a {
     float:right;
 }
+
+/*******************************************************/
+
+/*MY CUSTOM CSS*/
+
+body {
+    background-image: url("../IMG/dallas.jpg");
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center center;
+}
+
+header {
+    text-align: center;
+    line-height: 1rem;
+}
+
+header>h1 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 3rem;
+}
+
+header>p {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    color: lightslategrey;
+}
+
+.fancy-header {
+    font-family: 'Amatic SC', cursive;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: darkred;
+}
+
+.article {
+    background-color: whitesmoke;
+    border-radius: 25px;
+    opacity: 75%;
+    padding: 1.75rem;
+}
+
+.article>p {
+    font-family: 'Manrope', sans-serif;
+}
+
+.article>a {
+    font-family: 'Manrope', sans-serif;
+    color: teal;
+}
+
+.article>a:hover {
+    color: goldenrod;
+}
+
+footer {
+    font-family: 'Manrope', sans-serif;
+    font-size: .75rem;
+    margin: 1rem;
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black;
+}
+
+footer>p {
+    line-height: 1rem;
+}
