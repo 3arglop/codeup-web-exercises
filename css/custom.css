@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Special Elite', cursive !important;
+}
+
+input.form-control {
+    width: 45% !important;
+}
+
+.navbar-nav {
+    --bs-nav-link-padding-y: 0 !important;
+}
+
+.nav-link, ul.list-group  {
+    font-family: 'Barlow Condensed', sans-serif !important;
+}
+
+#jumbotron {
+    background-image: url("../IMG/pizza.png");
+    background-repeat: no-repeat;
+    min-height: 50vh;
+}
+
+#jumbotron h1 {
+    background-color: whitesmoke;
+    opacity: 75%;
+    margin-top: 10vh;
+}
+
+ul>li.nav-item>button {
+    font-family: 'Special Elite', cursive !important;
+}
+
+#footerGIF {
+    background-image: url("../IMG/pizza-making.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 500px;
+    width: 800px;
+}
