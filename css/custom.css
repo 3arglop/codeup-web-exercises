@@ -2,29 +2,54 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Special Elite', cursive !important;
+    background-color: #3F1503 !important;
 }
 
 input.form-control {
     width: 45% !important;
 }
 
+nav.navbar {
+    background-color: #61120E;
+}
 .navbar-nav {
     --bs-nav-link-padding-y: 0 !important;
 }
 
 .nav-link, ul.list-group  {
     font-family: 'Barlow Condensed', sans-serif !important;
+    color: white !important;
+}
+
+a.nav-link:hover {
+    color: #F4B043 !important;
+    font-weight: bold;
+    transition-timing-function: ease-in;
+}
+
+.navbar-toggler-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 10px !important;
+    background-image: url("../IMG/pizza-icon.webp") !important;
+}
+
+.navbar-toggler {
+    padding: 0 !important;
+    margin-right: .5rem !important;
+    border: 1px solid white !important;
+    border-radius: 10px !important;
 }
 
 #jumbotron {
     background-image: url("../IMG/pizza.png");
     background-repeat: no-repeat;
-    min-height: 50vh;
+    min-height: 42vh;
 }
 
 #jumbotron h1 {
     background-color: whitesmoke;
-    opacity: 75%;
+    opacity: 65%;
     margin-top: 10vh;
 }
 
@@ -32,11 +57,87 @@ ul>li.nav-item>button {
     font-family: 'Special Elite', cursive !important;
 }
 
+.text-light {
+    --bs-text-opacity: #C82F3C !important;
+}
+
+#pills-home-tab, #pills-profile-tab, #pills-contact-tab {
+    color: white;
+    margin: 0 .2rem;
+}
+
+#pills-home-tab:hover, #pills-profile-tab:hover, #pills-contact-tab:hover, button.btn:hover {
+    background-color: black !important;
+    color: white !important;
+    border: 1px solid white;
+}
+
+#pills-home-tab:active, #pills-profile-tab:active, #pills-contact-tab:active, button.btn:active {
+    background-color: #F4B043 !important;
+    color: #61120E !important;
+    border: 1px solid #F4B043;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #C82F3C !important;
+    background-color: transparent !important;
+    border: 1px solid #C82F3C;
+}
+
+div.card {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 3px solid white;
+}
+
+li.list-group-item {
+    background-color: #C82F3C;
+    opacity: 65%;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.form-check-input {
+    outline: 2px solid darkred !important;
+    margin: .2rem;
+
+}
+
+.form-check-input:hover {
+    outline-color: white !important;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    outline-color: white !important;
+    background-color: black !important;
+}
+
+footer {
+    background-color: #61120E;
+}
+
 #footerGIF {
-    background-image: url("../IMG/pizza-making.gif");
+    background-image: url("../IMG/pizza-39.webp");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
-    height: 500px;
-    width: 800px;
+    background-position: top center;
+    height: 300px;
+    width: 55vw;
+    border-top-right-radius: 5rem 10rem;
+    border-bottom-right-radius: 5rem 10rem;
+}
+
+#socialMedias {
+    width: 35vw !important;
+    margin-top: 2rem !important;
+}
+
+i.fa-brands {
+    color: white !important;
+    font-size: 2rem;
+}
+
+i.fa-brands:hover {
+    color: #3F1503 !important;
 }

@@ -23,11 +23,11 @@
 
 <header>
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg border-bottom border-danger">
         <div class="container-fluid">
-            <a class="navbar-brand">Pizza World</a>
+            <a class="navbar-brand text-danger">Pizza World</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon text-danger"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -39,8 +39,8 @@
                     </li >
                 <li class="nav-item">
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Zip Code" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search stores near you!</button>
+                        <input class="form-control me-2 text-danger" type="search" placeholder="Zip Code" aria-label="Search">
+                        <button class="btn btn-outline-danger" type="submit">Search stores near you!</button>
                     </form>
                  </li>
                 </ul>
@@ -66,19 +66,19 @@
     <!--NAVBAR WITH TABS-->
     <section class="container">
 
-        <h2>Build your own Pizza!</h2>
+        <h2 class="text-warning">Build your own Pizza!</h2>
 
         <!--NAME FOR TABS-->
         <div>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><span class="badge bg-secondary">1 </span> Size and Crust</button>
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><span class="badge text-light">1 </span> Size and Crust</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><span class="badge bg-secondary">2</span> Cheese and Sauce</button>
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><span class="badge text-light">2</span> Cheese and Sauce</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"><span class="badge bg-secondary">3</span> Toppings</button>
+                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"><span class="badge text-light">3</span> Toppings</button>
             </li>
         </ul>
 
@@ -89,17 +89,17 @@
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
 
                 <div class="card" style="width: 100%;">
-                    <div class="card-header">
+                    <div class="card-header text-warning fs-3 bg-danger bg-opacity-10 border border-light border-start-0 border-end-0">
                         Choose Size and Crust
                     </div>
 
                     <!--CRUST #!-->
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header fs-4 text-danger">
                             Hand Tossed
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Garlic-seasoned crust with a rich, buttery taste.</li>
+                            <li class="list-group-item fw-bold">Garlic-seasoned crust with a rich, buttery taste.</li>
 
                             <li class="list-group-item">
                                 <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio" value="handS">
@@ -130,11 +130,11 @@
                     </div>
                     <!--CRUST #2-->
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header fs-4 text-danger">
                             Handmade Pan
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Two layers of cheese, toppings to the edge, baked in a pan for a crust that is golden and crispy with a buttery taste.</li>
+                            <li class="list-group-item fw-bold">Two layers of cheese, toppings to the edge, baked in a pan for a crust that is golden and crispy with a buttery taste.</li>
 
                             <li class="list-group-item">
                                 <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio5" value="panS">
@@ -165,11 +165,11 @@
                     </div>
                     <!--CRUST #3-->
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header fs-4 text-danger">
                             Crunchy Thin Crust
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Thin enough for the optimum crispy to crunchy ratio and square cut to be perfectly sharable.</li>
+                            <li class="list-group-item fw-bold">Thin enough for the optimum crispy to crunchy ratio and square cut to be perfectly sharable.</li>
 
                             <li class="list-group-item">
                                 <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio9" value="thinS">
@@ -199,7 +199,7 @@
                         </ul>
                     </div>
 
-                    <div class="card-footer">
+                    <div class="card-footer bg-danger bg-opacity-10 border border-light border-start-0 border-end-0">
                         <button type="button" class="btn btn-outline-danger float-end">Next Step ></button>
                     </div>
                 </div>
@@ -210,16 +210,16 @@
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
 
                 <div class="card" style="width: 100%;">
-                    <div class="card-header">
+                    <div class="card-header text-warning fs-3 bg-danger bg-opacity-10 border border-light border-start-0 border-end-0">
                         Choose Cheese and Sauce
                     </div>
 
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header text-danger fs-3">
                             Cheese
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">How Much?
+                            <li class="list-group-item fs-4">How Much?
                                 <select class="form-select m-1" aria-label="Default select example">
                                     <option value="1">None</option>
                                     <option value="1">Light</option>
@@ -230,11 +230,11 @@
                         </ul>
                     </div>
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header text-danger fs-3">
                             Sauce
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">What Type?
+                            <li class="list-group-item fs-4">What Type?
                                 <select class="form-select m-1" aria-label="Default select example">
                                     <option value="1">Honey BBQ Sauce</option>
                                     <option value="1">Garlic Parmesan Sauce</option>
@@ -242,7 +242,7 @@
                                     <option value="1">Alfredo Sauce</option>
                                 </select>
                             </li>
-                            <li class="list-group-item">How Much?
+                            <li class="list-group-item fs-4">How Much?
                                 <select class="form-select m-1" aria-label="Default select example">
                                     <option value="1">None</option>
                                     <option value="1">Light</option>
@@ -253,10 +253,10 @@
                         </ul>
                     </div>
 
-                    <div class="card-footer">
+                    <div class="card-footer bg-danger bg-opacity-10 border border-light border-start-0 border-end-0">
                         <div class="btn-group float-end" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-danger">< Previous</button>
-                            <button type="button" class="btn btn-danger">Next ></button>
+                            <button type="button" class="btn btn-outline-danger">< Previous</button>
+                            <button type="button" class="btn btn-outline-danger">Next ></button>
                         </div>
                     </div>
                 </div>
@@ -267,12 +267,12 @@
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
 
                 <div class="card" style="width: 100%;">
-                    <div class="card-header">
+                    <div class="card-header text-warning fs-3 bg-danger bg-opacity-10 border border-light border-start-0 border-end-0">
                         Choose Toppings
                     </div>
 
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header text-danger fs-3">
                             Choose Meats
                         </div>
 
@@ -329,7 +329,7 @@
                     </div>
                     
                     <div class="card m-3" style="width: calc(100% - 2rem);">
-                        <div class="card-header">
+                        <div class="card-header text-danger fs-3">
                             Choose Non-meats
                         </div>
                         <ul class="list-group list-group-flush">
@@ -420,7 +420,7 @@
                         </ul>
                     </div>
 
-                    <div class="card-footer">
+                    <div class="card-footer bg-danger bg-opacity-10 border border-light border-start-0 border-end-0">
                         <button type="button" class="btn btn-outline-danger float-end">Checkout <i class="fa-solid fa-cart-shopping"></i></button>
                     </div>
                 </div>
@@ -435,28 +435,28 @@
 </main>
 
 <!--FOOTER (COS WHY NOT)-->
-<footer class="bd-footer py-4 py-md-5 mt-5 bg-light">
-    <div class="container">
+<footer class="bd-footer mt-5 border-top border-danger">
+    <div class="content">
         <div class="row">
             <div class="col-lg-8 m-0 p-0" id="footerGIF">
             </div>
             
-            <div class="col-4 col-lg-2 offset-lg-1">
-                <h5>Follow Us!</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="/">
+            <div class="col-4 col-lg-4 offset-lg-1" id="socialMedias">
+                <h5 class="text-warning fs-2 d-flex justify-content-center p-3 m-4">Follow Us!</h5>
+                <ul class="list-unstyled d-flex justify-content-evenly">
+                    <li class="mb-2 fs-3"><a href="/">
                         <i class="fa-brands fa-instagram"></i>
                     </a></li>
-                    <li class="mb-2"><a href="/docs/5.2/">
+                    <li class="mb-2 fs-3"><a href="/docs/5.2/">
                         <i class="fa-brands fa-facebook"></i>
                     </a></li>
-                    <li class="mb-2"><a href="/docs/5.2/examples/">
+                    <li class="mb-2 fs-3"><a href="/docs/5.2/examples/">
                         <i class="fa-brands fa-twitter"></i>
                     </a></li>
-                    <li class="mb-2"><a href="/docs/5.2/examples/">
+                    <li class="mb-2 fs-3"><a href="/docs/5.2/examples/">
                         <i class="fa-brands fa-tiktok"></i>
                     </a></li>
-                    <li class="mb-2"><a href="/docs/5.2/examples/">
+                    <li class="mb-2 fs-3"><a href="/docs/5.2/examples/">
                         <i class="fa-brands fa-youtube"></i>
                     </a></li>
                 </ul>

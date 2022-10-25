@@ -29,6 +29,7 @@ a {
     background: var(--light-bg);
     position: fixed;
     width: 100%;
+    z-index: 1;
 }
 .nav {
     list-style-type: none;
@@ -54,7 +55,6 @@ a {
 .profile-image {
     position: absolute;
     top: 250px;
-    /*z-index: 1000;*/
 }
 .profile-form {
    line-height: 5rem;
