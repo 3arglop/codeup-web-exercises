@@ -125,7 +125,8 @@ section:nth-of-type(6) {
     /* enter needed declarations here */
     flex-wrap: wrap;
     justify-content: space-between;
-    align-content: center;
+    align-content: space-around;
+    align-items: center;
 }
 
 .grey-box {

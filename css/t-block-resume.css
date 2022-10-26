@@ -1,8 +1,20 @@
-/* Medium devices (tablets, 768px and down) */
-@media screen and (max-width: 768px) {
-
+body {
+    font-family: 'Bebas Neue', cursive !important;
+    margin: 1rem !important;
+    padding: 1rem !important;
 }
-
-
-/* Large devices (desktops, 992px and up) */
-@media screen and (min-width:992px) { /* ... */ }
+header>.container-fluid>p, #skillsAbilities li, #academic p, #experience span, #experience ul, #projects p, #awards span, #awards p {
+    font-family: 'Questrial', sans-serif !important;
+}
+h1 {
+    font-size: 4rem !important;
+}
+h3 {
+    font-size: 2rem !important;
+}
+h5 {
+    font-size: 1.5rem !important;
+}
+#academic h5, #academic p {
+    line-height: 1rem;
+}
