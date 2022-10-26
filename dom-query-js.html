@@ -25,50 +25,120 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
+<button class="btn" type="submit" id="btn1">Click me to change <strong>header</strong> 😊</button>
+
+<button class="btn" type="submit" id="btn2">Click me to change the <strong>li</strong> tags 😜</button>
+
+<button class="btn" type="submit" id="btn3">click me to change the <strong>sub-heading</strong> 🤠</button>
+
+<button class="btn" type="submit" id="btn4">Click me to change the <strong>paragraph</strong> 🥸</button>
+
 <script>
     (function() {
         "use strict";
-        // TODO: Uncomment next line and get the main header element by id
 
-        let mainHeader = document.getElementById('main-header');
-        console.log(mainHeader);
+        //FIRST EXERCISE
 
-        // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        // // TODO: Uncomment next line and get the main header element by id
+        //
+        // let mainHeader = document.getElementById('main-header');
+        // console.log(mainHeader);
+        //
+        // // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        //
+        // mainHeader.innerHTML = "JavaScript is COOL! 😎";
+        //
+        // // TODO: Uncomment the next line and get the sub header element by id
+        //
+        // let subHeader = document.getElementById('sub-header');
+        // console.log(subHeader);
+        //
+        // // TODO: Set the text color of subHeader to blue
+        //
+        // subHeader.style.color = "blue";
+        //
+        // // TODO: Uncomment the next line and get all list items
+        //
+        // let listItems = document.getElementsByTagName('li');
+        // console.log(listItems);
+        //
+        // // TODO: Set text color on every other list item to grey
+        //
+        // for (let i = 0; i < listItems.length; i+=2) {
+        //    listItems[i].style.color = "grey";
+        // }
+        //
+        // // TODO: Set text color of li with dbid = 1 to blue
+        //
+        // listItems[0].style.color = "blue";
+        //
+        // // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+        //
+        // let subParagraphs = document.getElementsByClassName('sub-paragraph');
+        // console.log(subParagraphs);
+        //
+        // // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        //
+        // subParagraphs[0].textContent = "Mission Accomplished!";
 
-        mainHeader.innerHTML = "JavaScript is COOL! 😎";
+        //SECOND EXERCISE
 
-        // TODO: Uncomment the next line and get the sub header element by id
+        //CALLING THE DOM: HELLO HTML
 
-        let subHeader = document.getElementById('sub-header');
-        console.log(subHeader);
+        let btn1 = document.getElementById('btn1');
+        console.log(btn1);
 
-        // TODO: Set the text color of subHeader to blue
+        let btn2 = document.getElementById('btn2');
+        console.log(btn2);
 
-        subHeader.style.color = "blue";
+        let btn3 = document.getElementById('btn3');
+        console.log(btn3);
 
-        // TODO: Uncomment the next line and get all list items
+        let btn4 = document.getElementById('btn4');
+        console.log(btn4);
 
-        let listItems = document.getElementsByTagName('li');
-        console.log(listItems);
+        btn1.addEventListener('click', function(e) {
+            e.preventDefault();
 
-        // TODO: Set text color on every other list item to grey
+            let mainHeader = document.getElementById('main-header');
 
-        for (let i = 0; i < listItems.length; i+=2) {
-           listItems[i].style.color = "grey";
-        }
+            mainHeader.innerHTML = "JavaScript is COOL! 😎";
 
-        // TODO: Set text color of li with dbid = 1 to blue
+            console.log("btn1 clicked!");
+        });
 
-        listItems[0].style.color = "blue";
+        btn2.addEventListener('click', function(e) {
+            e.preventDefault();
 
-        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+            let listItems = document.getElementsByTagName('li');
 
-        let subParagraphs = document.getElementsByClassName('sub-paragraph');
-        console.log(subParagraphs);
+            for (let i = 0; i < listItems.length; i+=2) {
+               listItems[i].style.color = "grey";
+            }
 
-        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+            listItems[0].style.color = "blue";
 
-        subParagraphs[0].textContent = "Mission Accomplished!";
+            console.log("btn2 clicked!");
+        })
+
+        btn3.addEventListener('click', function(e) {
+            e.preventDefault();
+            let subHeader = document.getElementById('sub-header');
+
+            subHeader.style.color = "blue";
+
+            console.log("btn3 clicked!");
+        });
+
+        btn4.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let subParagraphs = document.getElementsByClassName('sub-paragraph');
+
+            subParagraphs[0].textContent = "Mission Accomplished!";
+
+            console.log("btn4 clicked!");
+        })
 
     })();
 </script>
