@@ -2,4 +2,4 @@
 ###### JavaScript, jQuery, HTML, CSS, Java, and MySQL  
 
 ## Currently, learning: 
-### **_Intro_** **_To_** **_CSS I_**, **_CSS_** **_Selectors_** **_and_** **_Properties_**, **_Box_** **_Model_**, **_CSS_** **_Positioning_**, and **_Flexbox_**
+### **_Intro_** **_To_** **_CSS II_**, **_Media_** **_Queries_**, **_Bootstrap_** **_Introduction_**, **_Bootstrap_** **_Grid_** **_System_**
