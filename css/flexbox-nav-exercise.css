@@ -20,6 +20,10 @@ nav {
     flex-grow: 1.5;
 }
 
+#logo a {
+    color: black;
+}
+
 ul {
     margin-top: 0;
     display: flex;
@@ -33,6 +37,7 @@ a {
     display: inline-block;
     margin: 0 1rem 0 0;
     text-decoration: none;
+    color: black;
 }
 
 nav ul li:nth-child(4) {
