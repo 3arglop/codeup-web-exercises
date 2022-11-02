@@ -141,3 +141,42 @@ i.fa-brands {
 i.fa-brands:hover {
     color: #3F1503 !important;
 }
+
+/*MOBILE MEDIA QUERY*/
+@media screen and (max-width: 768px) {
+    #jumbotron {
+        background-image: url("../IMG/pizzas-mobile_v3.png");
+        min-height: 33vh;
+    }
+
+    #jumbotron h1 {
+        font-size: 2rem;
+    }
+
+    #pills-tab button {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #socialMedias {
+        margin-left: 2.5rem;
+    }
+
+    #socialMedias h5 {
+        width: 100%;
+        margin-left: .5rem !important;
+        padding-left: .5rem !important;
+    }
+
+    .fa-brands {
+        margin: .5rem;
+    }
+}
+
+/*TABLET MEDIA QUERY*/
+@media screen and (min-height: 769px) and (max-width: 992px) {
+    div#socialMedias {
+        margin-left: 2.5rem;
+    }
+}
+
