@@ -12,6 +12,16 @@
             font-family: Arial;
             margin: 1rem;
             padding: 1rem;
+            font-size: 4rem;
+        }
+        button {
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        #skull {
+            font-size: 10rem;
+            height: 50vh;
         }
     </style>
 </head>
@@ -30,7 +40,7 @@
         function updateTimer() {
             if (detonationTimer == 0) {
                 alert('EXTERMINATE!');
-                document.body.innerHTML = '';
+                document.body.innerHTML = `<p id="skull">☠️</p>`;
             } else if (detonationTimer > 0) {
                 document.getElementById('timer').innerHTML = detonationTimer;
             }
