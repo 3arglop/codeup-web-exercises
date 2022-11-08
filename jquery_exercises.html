@@ -17,12 +17,15 @@
         main {
             padding: 2rem 10rem;
         }
-        section p {
+        section p, #recipe {
             text-align: start;
             line-height: 2rem;
         }
         section a {
             float: right;
+        }
+        #applePie span {
+            margin: 0 1rem;
         }
         footer {
             text-align: start;
@@ -33,44 +36,101 @@
             font-size: 3rem;
             margin: 0;
         }
-
     </style>
 </head>
 <body>
 
 <header>
-    <h2>Breaking News!</h2>
-    <h3>November 7th, 2022</h3>
+    <h2 id="breaking">Breaking News!</h2>
+    <h3 class="codeup">November 7th, 2022</h3>
 </header>
 
 <hr>
 
 <main>
-    <div>
-        <h1>Full Moon Will Turn An Eerie Red During The Total Lunar Eclipse</h1>
-        <span>By Taylor Nicioli and Ashley Strickland, CNN</span>
+    <!--ARTICLE ONE-->
+    <div id="lunarEclipse">
+        <h1 id="title">Full Moon Will Turn An Eerie Red During The Total Lunar Eclipse</h1>
+        <span class="codeup">By Taylor Nicioli and Ashley Strickland, CNN</span>
         <br>
         <span>Updated 3:06 PM EST, Mon November 7, 2022</span>
-
     </div>
 
     <br>
 
-    <section>
+    <section id="lunarText">
 
     <p><strong>(CNN)</strong> — Set to turn a coppery shade of red in the sky this Tuesday, November 8, the full moon will kick off Election Day with an early morning event of its own — a total lunar eclipse. The second one of the year, the eclipse will begin at 3:02 a.m. ET, with the moon initially dimming for the first hour, and end at 8:50 a.m. ET. At totality, the stage at which the entire moon will be in Earth’s shadow, the moon will turn a dark reddish hue, which is why a total eclipse is also called a blood moon. Sky gazers will be able to see the striking effect beginning at 5:17 a.m. ET, according to NASA.</p>
 
      <a href="https://www.cnn.com/2022/11/07/world/november-full-beaver-moon-lunar-eclipse-scn/index.html">Read More</a>
 
     </section>
+    <!--END OF ARTICLE ONE-->
+
+    <br>
+
+    <!--ARTICLE TWO-->
+    <div id="applePie">
+        <h1>Apple Pie Recipe with the Best Filling</h1>
+        <span><strong>Prep Time:</strong> 30 minutes</span>
+        <span><strong>Cook Time:</strong> 1 hour</span>
+        <span><strong>Pie Crust Time:</strong> 30 minutes</span>
+        <span><strong>Total Time:</strong> 2 hours</span>
+    </div>
+
+    <br>
+
+    <section id="recipe">
+        <p>Everyone has to make this Classic Apple Pie Recipe for Thanksgiving. You will love the flaky pie crust and the apple pie filling will surprise you.</p>
+
+        <div>
+        <h3>Ingredients</h3>
+
+            <ul>
+                <li>1 recipe for double pie crust</li>
+                <li>2 1/4 lbs Granny Smith Apples, peeled and cored</li>
+                <li>1 1/2 tsp cinnamon</li>
+                <li>8 tbsp unsalted butter</li>
+                <li>3 tbsp all-purpose flour</li>
+                <li>1/4 cup water</li>
+                <li>1 cup granulated sugar</li>
+                <li>1 egg + 1 tbsp water, for egg wash</li>
+            </ul>
+        </div>
+
+        <br>
+
+        <div>
+        <h3>Instructions</h3>
+
+            <ul>
+                <li>Make the pie crust recipe and chill per instructions while preparing the filling. Preheat oven to 425˚F</li>
+
+                <li>Melt butter in a medium saucepan over medium heat. Whisk in 3 Tbsp flour then simmer for 1 minute, whisking constantly. Whisk in 1/4 cup water, 1 cup sugar and bring to a boil. Reduce heat and continue simmering 3 minutes, whisking frequently then remove from heat</li>
+
+                <li>Peel, remove cores and thinly slice 7 cups of apples and place them in a large bowl. Sprinkle the top with 1 1/2 tsp cinnamon and toss to combine. Pour the sauce over the apples and stir to coat the apple slices</li>
+
+                <li>Sprinkle your work surface with flour and roll out bottom pie crust to a 12" diameter circle. Wrap it around your rolling pin to transfer it to the 9" pie plate. Add apple mixture, mounding slightly in the center and being careful not to get the filling on the edges which would make it difficult to seal</li>
+
+                <li>Roll second crust into an 11" round and cut into 10 even thickness strips using a pizza cutter. Arrange strips in a woven lattice pattern over the top (see video tutorial). Beat together 1 egg and 1 Tbsp water and brush the top with egg mixture</li>
+
+                <li>Bake at 425˚F in the center of the oven for 15 minutes. Reduce the heat to 350˚F and continue baking another 45 minutes or until apples are soft and filling is bubbling through the vents.* Rest at room temp 1 hour before serving</li>
+            </ul>
+        </div>
+
+        <a href="https://natashaskitchen.com/apple-pie-recipe/">Read More</a>
+
+    </section>
+    <!--END OF ARTICLE TWO-->
 
 </main>
 
-<hr>
+<hr class="codeup">
 
 <footer>
-    <p>CITATION:</p>
+    <p class="codeup">CITATION:</p>
     <p>Nicioli, Taylor, and Ashley Strickland. “Full Moon Will Turn an Eerie Red during the Total Lunar Eclipse.” CNN, Cable News Network, 7 Nov. 2022, https://www.cnn.com/2022/11/07/world/november-full-beaver-moon-lunar-eclipse-scn/index.html. </p>
+    <p>Kravchuk, Natasha. “Apple Pie Recipe with the Best Filling (Video).” NatashasKitchen.com, 25 Oct. 2019, https://natashaskitchen.com/apple-pie-recipe/. </p>
 </footer>
 
 
@@ -87,6 +147,23 @@
     //     alert( 'The DOM has finished loading!' );
     // });
 
+    // let title = $('#title').html();
+    // alert(title);
+
+    //EVEN THOUGH I ASSIGNED THE ID OF TITLE TO BOTH THE MAIN TITLE AND THE ARTICLE TITLE, THE ONLY ONE THAT WILL BE ALERTED IS THE MAIN TITLE DUE TO THE HIERARCHY OF THE DOC
+
+    // let content = $('#alert').html();
+    // alert(content);
+
+    let codeupElements = $('.codeup');
+    codeupElements.css('border', '1px solid red');
+
+
+    // $('li').css('font-size', '20px').css('background', 'yellow');
+    // $('h1').css('background', 'pink');
+    // $('p').css('background', 'orange');
+
+    $('h1, p, li').css('background', 'yellowgreen');
 
 
 </script>
