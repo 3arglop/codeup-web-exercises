@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Konami Code</title>
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("IMG/street-fighter.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        h1 {
+            margin: 2rem 2rem 1rem 2rem;
+            font-size: 6rem;
+            text-shadow: 4px 4px black;
+        }
+
+        button {
+            background-color: #fbeee0;
+            border: 2px solid #422800;
+            border-radius: 30px;
+            box-shadow: #422800 4px 4px 0 0;
+            color: #422800;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 0 18px;
+            line-height: 50px;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        button:hover {
+            background-color: #fff;
+        }
+
+        button:active {
+            box-shadow: #422800 2px 2px 0 0;
+            transform: translate(2px, 2px);
+        }
+
+        @media (min-width: 768px) {
+            button {
+                min-width: 120px;
+                padding: 0 25px;
+            }
+        }
+
+        p {
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4rem 1rem;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<h1>Konami Code</h1>
+
+<button type="submit" id="btn">Click Me!</button>
+
+<br>
+
+<p id="code"></p>
+
+
+
+<!--JQUERY-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+<script>
+    "use strict";
+
+    // $(document).keyup(function(event){
+    //     console.log(event.keyCode);
+    // });
+
+    // CHECKING IF MY JQUERY IS WORKING
+    // $(function() {
+    //     alert( 'The DOM has finished loading!' );
+    // });
+
+    // CALLING THE DOM
+    let button = $('#btn');
+    console.log(button);
+    let codeEl = $('#code');
+    console.log(codeEl);
+
+    const codeEmojis = ["⬆️", "⬆️", "⬇️", "⬇️", "⬅️", "➡️", "⬅️", "➡️", "🅱️", "🅰️"];
+
+    console.table(codeEmojis);
+
+    const renderEmojis = () => {
+        let html = '';
+        for(let i = 0; i < codeEmojis.length; i++) {
+            html += `<p>${codeEmojis[i]}</p>`
+        }
+        alert("Press the following code on your keyboard to unlock 30 lives!")
+       codeEl.html(html);
+    }
+
+    button.click(renderEmojis);
+
+</script>
+</body>
+</html>
