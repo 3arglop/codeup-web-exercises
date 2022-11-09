@@ -70,11 +70,39 @@
             align-items: center;
             margin: 4rem 1rem;
         }
+        .hidden {
+            visibility: hidden;
+        }
+        #code.hidden {
+            visibility: hidden;
+        }
+        #my-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 100000;
+            visibility: hidden;
+        }
+        #my-canvas.active {
+            visibility: visible;
+        }
+         #fighterGif {
+             visibility: hidden;
+             width: 100%;
+             height: 500px;
+             position: fixed;
+             top: 250px;
+             left: 25px;
+         }
+         #fighterGif.active {
+             visibility: visible;
+         }
+
     </style>
 </head>
 <body>
-
-
 
 <h1>Konami Code</h1>
 
@@ -84,18 +112,18 @@
 
 <p id="code"></p>
 
+<img src="IMG/sf-fighting.gif" alt="street-fighter-gif" id="fighterGif">
+
+<canvas id="my-canvas"></canvas>
 
 
 <!--JQUERY-->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
+<!--CONFETTI-->
+<script src="js/confetti.js"></script>
 
 <script>
     "use strict";
-
-    // $(document).keyup(function(event){
-    //     console.log(event.keyCode);
-    // });
 
     // CHECKING IF MY JQUERY IS WORKING
     // $(function() {
@@ -107,6 +135,10 @@
     console.log(button);
     let codeEl = $('#code');
     console.log(codeEl);
+    let confettiEl = $('#my-canvas');
+    console.log(confettiEl);
+    let fighter = $('#fighterGif');
+    console.log(fighter);
 
     const codeEmojis = ["⬆️", "⬆️", "⬇️", "⬇️", "⬅️", "➡️", "⬅️", "➡️", "🅱️", "🅰️"];
 
@@ -118,10 +150,52 @@
             html += `<p>${codeEmojis[i]}</p>`
         }
         alert("Press the following code on your keyboard to unlock 30 lives!")
-       codeEl.html(html);
+        codeEl.html(html);
+        button.addClass('hidden');
     }
 
     button.click(renderEmojis);
+
+    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65] //NO 13 FOR ENTER KEY VALUE
+    let keyCount = 0;
+
+    window.addEventListener("keyup", (e) => {
+        e.preventDefault();
+       let userInput = e.keyCode;
+        console.log(userInput);
+
+
+        if(konamiCode.indexOf(userInput) < 0 || userInput !== konamiCode[keyCount]) {
+            alert("❌ NOPE ❌");
+            keyCount = 0;
+        } else {
+            keyCount++;
+            console.log("yay");
+        }
+
+        if(keyCount === konamiCode.length) {
+            alert("🏆 30 LIVES ADDED! 🏆");
+
+            codeEl.addClass('hidden');
+
+            fighter.addClass('active');
+
+            confettiEl.addClass('active');
+            const confettiSettings = { target: 'my-canvas' };
+            const confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
+
+            setTimeout(confetti.clear, 12000);
+
+            setTimeout(() => {
+                fighter.removeClass('active');
+                alert("Let's try that again 😈");
+                codeEl.removeClass('hidden');
+            }, 12250)
+
+            keyCount = 0;
+        }
+    });
 
 </script>
 </body>
