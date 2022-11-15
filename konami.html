@@ -167,10 +167,13 @@
 
         if(konamiCode.indexOf(userInput) < 0 || userInput !== konamiCode[keyCount]) {
             alert("❌ NOPE ❌");
+            alert("Let's try that again 😈");
             keyCount = 0;
+            console.log(keyCount);
         } else {
             keyCount++;
-            console.log("yay");
+            console.log(keyCount);
+            console.log("👍");
         }
 
         if(keyCount === konamiCode.length) {
@@ -196,6 +199,8 @@
             keyCount = 0;
         }
     });
+
+
 
 </script>
 </body>
