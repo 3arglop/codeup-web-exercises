@@ -1,0 +1,111 @@
+[
+  {
+    "title": "20 oz. Hammer",
+    "brand": "DEWALT",
+    "quantity": 25,
+    "categories": [
+      "Tool"
+    ],
+    "price": 26.97,
+    "img": "https://images.thdstatic.com/productImages/95fe1d9a-1b8f-46eb-9127-833edc831fb0/svn/dewalt-claw-hammers-dwht51054-c3_145.jpg"
+  },
+  {
+    "title": "3/8 in. 2,800 RPM Tradesman Drill",
+    "brand": "Milwaukee",
+    "quantity": 5,
+    "categories": [
+      "Tool",
+      " Powered"
+    ],
+    "price": 71.00,
+    "img": "https://images.thdstatic.com/productImages/78da23a3-dd47-4f7b-8987-f43d03d33c7f/svn/milwaukee-power-drills-0240-20-64_300.jpg"
+  },
+  {
+    "title": "21 in. 3-in-1 Variable Speed Gas Walk Behind Self Propelled Lawn Mower with Auto Choke",
+    "brand": "Honda",
+    "quantity": 8,
+    "categories": [
+      "Tool",
+      " Gas",
+      " Outdoor"
+    ],
+    "price": 599.00,
+    "img": "https://images.thdstatic.com/productImages/b805cb94-f0f9-4800-bf93-2070a92a8704/svn/honda-self-propelled-lawn-mowers-hrn216vka-64_145.jpg"
+  },
+  {
+    "title": "11-in-1 Multi Bit Screwdriver & Nut Driver - Cushion Grip Handle",
+    "brand": "Klein Tools",
+    "quantity": 25,
+    "categories": [
+      "Tool"
+    ],
+    "price": 15.97,
+    "img": "https://images.thdstatic.com/productImages/1531becb-0474-4f3d-8269-b1b8e2b60070/svn/klein-tools-multi-bit-screwdrivers-32500-64_145.jpg"
+  },
+  {
+    "title": "ONE+ 18V Cordless 6-Tool Combo Kit with 1.5 Ah Battery, 4.0 Ah Battery, and Charger",
+    "brand": "RYOBI",
+    "quantity": 42,
+    "categories": [
+      "Tool",
+      " Powered"
+    ],
+    "price": 199.00,
+    "img": "https://images.thdstatic.com/productImages/5d0848fa-92a6-42f6-9653-e75d0413fd99/svn/ryobi-power-tool-combo-kits-pcl1600k2-64_145.jpg"
+  },
+  {
+    "title": "20-Volt MAX XR Premium Lithium-Ion 6.0Ah and 4.0Ah Starter Kit",
+    "brand": "DEWALT",
+    "quantity": 11,
+    "categories": [
+      "Tool",
+      " Power Tool Accessories"
+    ],
+    "price": 199.00,
+    "img": "https://images.thdstatic.com/productImages/6f809840-ea0d-43ad-92cf-fd371564da20/svn/dewalt-outdoor-power-batteries-chargers-dcb246ck-64_145.jpg"
+  },
+  {
+    "title": "6 Gal. Portable Electric Pancake Air Compressor",
+    "brand": "RIDGID",
+    "quantity": 100,
+    "categories": [
+      "Tool",
+      " Air Compressor Tools"
+    ],
+    "price": 99.00,
+    "img": "https://images.thdstatic.com/productImages/078d253d-4932-41cf-ab91-83dc99fe0edf/svn/ridgid-portable-air-compressors-of60150hb-64_145.jpg"
+  },
+  {
+    "title": "M18 FUEL 120 MPH 450 CFM 18-Volt Lithium-Ion Brushless Cordless Handheld Blower (Tool-Only)",
+    "brand": "Milwaukee",
+    "quantity": 35,
+    "categories": [
+      "Outdoor",
+      " Outdoor Power Equipments"
+    ],
+    "price": 179.00,
+    "img": "https://images.thdstatic.com/productImages/48989dfc-be75-4b22-b38f-2f39e39da2e0/svn/milwaukee-cordless-leaf-blowers-2724-20-64_145.jpg"
+  },
+  {
+    "title": "4-Tier Industrial Duty Steel Freestanding Garage Storage Shelving Unit in Black (77 in. W x 78 in. H x 24 in. D)",
+    "brand": "Husky",
+    "quantity": 6,
+    "categories": [
+      "Storage & Organization",
+      " Shelving"
+    ],
+    "price": 299.00,
+    "img": "https://images.thdstatic.com/productImages/0c3e8bfc-dea6-40ff-8ed5-d48940bbddd6/svn/black-husky-freestanding-shelving-units-n2w772478w4b-64_145.jpg"
+  },
+  {
+    "title": "18 ft. Reach MPXA Aluminum Multi-Position Ladder with 300 lbs. Load Capacity Type IA Duty Rating",
+    "brand": "Gorilla Ladders",
+    "quantity": 25,
+    "categories": [
+      "Building Materials",
+      " Ladders"
+    ],
+    "price": 99.00,
+    "img": "https://images.thdstatic.com/productImages/9f4041c7-a468-4e6c-85fb-a6b46c1cdeb7/svn/gorilla-ladders-multi-position-ladders-glmpxa-18-64_145.jpg"
+  }
+]

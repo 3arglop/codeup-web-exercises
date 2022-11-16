@@ -1,26 +1,54 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Online Store</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
 </head>
 <body>
 
-<h1>My Tool Store</h1>
+<header>
+    <h1 class="text-center m-5">My Tool Store</h1>
+</header>
 
-<table id="products">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Categories</th>
-    </tr>
-    </thead>
-    <tbody id="insertProducts"></tbody>
-</table>
+<main>
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <div class="container">
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Categories</th>
+                <th scope="col">Image</th>
+            </tr>
+            </thead>
+            <tbody id="showProducts">
+
+        <!--SAVING THIS FOR SYNTAX PURPOSES-->
+                <!--<tr>-->
+                <!--<th scope="row">1</th>-->
+                <!--<td>Mark</td>-->
+                <!--<td>Otto</td>-->
+                <!--<td>@mdo</td>-->
+                <!--</tr>-->
+
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+
+
+<!--JQUERY-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 <script>
     (function() {
@@ -31,6 +59,48 @@
         //       HINT: Your data should come back as a JSON object; use console.log() to inspect
         //             its contents and fields
         //       HINT: You will want to target #insertProducts for your new HTML elements
+
+        //CALLING THE DOM
+        let tableBody = $('#showProducts');
+        console.log(tableBody);
+
+
+        const fetchInventoryData = () => {
+            const URL = "data/inventory.json"
+
+            fetch(URL)
+                .then(response => {
+                    console.log(response);
+                    if (!response.ok) {
+                        throw Error('ERROR');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.table(data);
+                    let html = '';
+                    for(let i = 0; i < data.length; i++) {
+                        html += `<tr>
+                                    <th scope="row">${[i + 1]}</th>
+                                    <td>${data[i].title}</td>
+                                    <td>${data[i].brand}</td>
+                                    <td>${data[i].quantity}</td>
+                                    <td>$${data[i].price}</td>
+                                    <td>${data[i].categories}</td>
+                                    <td>
+                                    <img src="${data[i].img}" alt="tools" height="100px" width="100px">
+                                    </td>
+                                </tr>`
+                    }
+
+                    tableBody.html(html);
+
+                });
+        }
+
+        fetchInventoryData();
+
+
     })();
 </script>
 
