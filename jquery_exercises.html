@@ -179,12 +179,13 @@
     });
 
     $('p').dblclick(function () {
-        $(this).css( "font-size", "18px" );
+        $(this).css( "font-size", "24px" );
         console.log("p clicked");
     });
 
     $('li').hover(
         function() {
+            $(this).css( "font-size", "20px" );
             $(this).css('color', 'yellow');
         },
         function() {
