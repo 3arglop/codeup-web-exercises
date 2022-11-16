@@ -20,7 +20,7 @@
              height: 100vh;
              background-size: cover;
              background-repeat: no-repeat;
-             background-position: center;
+             background-position: top center;
              margin: 1rem;
              padding: 1rem;
              color: white
@@ -50,6 +50,13 @@
          h3 {
              font-size: 24px;
          }
+         button {
+             margin-top: .5rem;
+             font-size: 1.25rem;
+             width: 5%;
+             padding: .25em;
+             cursor: pointer;
+         }
          main {
              margin: 0 2rem;
              padding: 0 3rem;
@@ -73,6 +80,7 @@
         }
         footer {
             line-height: .5rem;
+            text-shadow: 1px 1px black;
         }
 
     </style>
@@ -91,6 +99,8 @@
 <hr>
 
 <main>
+
+    <button type="button">🤠</button>
 
     <section>
 
@@ -160,6 +170,75 @@
     <p>“13 Things You Didn't Know about Grand Canyon National Park.” U.S. Department of the Interior, 29 Sept. 2021, https://www.doi.gov/blog/13-things-you-didnt-know-about-grand-canyon-national-park.</p>
 </footer>
 
+<!--JQUERY-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script>
+
+    "use strict";
+
+    //TODO: Create a button that, when clicked, makes the last li in each ul have a yellow background.
+
+    const btn = $('button');
+    // console.log(btn);
+
+    $(document).ready(function() {
+
+            btn.on('click', function(e) {
+                e.preventDefault();
+                $('ul').each(function(index) {
+                    const newCSS = {
+                        'color': 'white',
+                        'background-color': '#4A9976',
+                        'text-shadow': '1px 1px black',
+                        'border-radius': '10px',
+                        'padding': '0 1rem'
+                    };
+                    $(this).children().last().css(newCSS)
+                });
+            });
+
+    //TODO: When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
+
+
+            $('h3').on('click', function(e) {
+                    e.preventDefault();
+                    $('ul').each(function() {
+                        const bolder = {
+                            'font-weight': 'bold',
+                            'text-decoration': 'underline',
+                        };
+                        $(this).children().css(bolder);
+                    })
+            })
+
+
+
+    //TODO: When any list item is clicked, first li of the parent ul should have a font color of blue.
+
+            $('li').on('click', function(e) {
+                    e.preventDefault();
+                    $('ul').each(function() {
+                        const fontChange = {
+                            'color': '#F94D00',
+                            'text-shadow': '1px 1px darkred'
+                        };
+                        $(this).children().first().css(fontChange);
+                    })
+            })
+
+    //TODO: Create 3 divs that each look like a picture frame. Each one should have a unique background image and a button underneath that swaps the image from the frame. Use the traversing functions of jQuery to accomplish this.
+
+    //TODO: The rules are the following:
+
+    //TODO: The left frame swaps to the right and takes the image from the frame in the center.
+
+    //TODO: The center frame swaps randomly to either the left or right.
+
+    //TODO: The right frame swaps to the left and takes the image from the frame in the center.
+
+    });
+</script>
 
 </body>
 </html>
