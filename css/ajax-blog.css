@@ -1,0 +1,80 @@
+:root {
+    scroll-padding-top: calc(50px + 25px);
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 1rem;
+    padding: 1rem;
+    font-family: 'Playfair Display', serif !important;
+    background-color: whitesmoke !important;
+}
+
+h1, h4, #date, #categories, strong {
+    font-family: 'Homemade Apple', cursive;
+}
+
+h1, #date, #categories {
+    color: #FC46AA;
+}
+
+br {
+    margin: .75rem 0;
+}
+
+#simple-list-example a {
+    color: #FC46AA;
+    font-weight: 900;
+    background-color: #FEC5E5;
+    text-decoration: none;
+}
+
+#simple-list-example a:hover {
+    color: #FEC5E5;
+    background-color: #FC46AA;
+}
+
+#entry {
+    border: 2px solid hotpink;
+    padding: 2rem;
+    margin: 1rem 0;
+    background-image: url("../IMG/pink-marble.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#entry strong, #entry h4 {
+    color: #E3242B;
+}
+
+#entry h4 {
+    height: 50px;
+}
+
+#entry strong {
+    font-size: 1.2rem;
+}
+
+#entry hr {
+    color: #990f02;
+    border-width: .2rem;
+}
+
+#emojis {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#emojis span {
+    margin: 0 1rem;
+}
+
+footer {
+    line-height: .1rem;
+    padding: 0 1rem;
+    font-size: .5rem;
+    color: #710c04;
+}
+
