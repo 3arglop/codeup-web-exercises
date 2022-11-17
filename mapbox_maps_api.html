@@ -6,8 +6,98 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mapbox API</title>
-</head>
-<body>
 
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+
+
+</head>
+<body class="text-center m-2 p-2">
+
+<header class="m-4">
+
+    <h1>My First Weather Map</h1>
+    <h5>Introducing: <span>My Favorite Restaurants!</span> </h5>
+
+</header>
+
+<main>
+
+    <section class="m-3 px-5">
+
+        <div class="border border-dark border-5">
+            <div id="map">
+                <!---DYNAMIC HTML-->
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+
+<!--BOOTSTRAP JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<!--JQUERY-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!--CREDENTIALS-->
+<script src="js/keys.js"></script>
+<!--MAPBOX JS-->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+
+<script>
+
+    "use strict";
+
+    mapboxgl.accessToken = WEATHER_API;
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/dark-v10', // style URL
+        center: [-95.7129, 37.0902], // starting position [lng, lat]
+        zoom: 3.6 // starting zoom'
+    });
+
+        map.on('load', () => {
+            map.setFog({});
+    });
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+
+    // const popup = new mapboxgl.Popup()
+    //     .setHTML('<h1 id="LM" style="color: darkblue; font-size: 2rem">Lincoln Memorial</h1><a href="https://www.nps.gov/linc/index.htm">Website</a>');
+    //
+    // const marker = new mapboxgl.Marker({
+    //     color: 'red',
+    //     draggable: true
+    // })
+    //     .setLngLat([-77.0502, 38.8893])
+    //     .setPopup(popup)
+    //     .addTo(map);
+    //
+    // marker.on('dragend', function() {
+    //     var coordinates = marker.getLngLat();
+    //     console.log(coordinates);
+    //     var location = $('#coordinates');
+    //     location.html('Latitude: ' + coordinates.lat + '<br> Longitude: ' + coordinates.lng);
+    // });
+
+    // Set marker options.
+    const marker = new mapboxgl.Marker({
+        color: "#FFFFFF",
+    }).setLngLat([30.5, 50.5])
+        .addTo(map);
+
+
+
+</script>
 </body>
 </html>
