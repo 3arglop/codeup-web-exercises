@@ -5,14 +5,39 @@
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
 
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Syne Mono', monospace;
+            background-image: url("IMG/tools-background.jpeg");
+            background-size: cover;
+            min-height: 100vh;
+        }
+        h1 {
+            color: darkred;
+            text-shadow: 1px 1px red;
+        }
         .container {
-            margin: 1rem 2rem;
+            margin: 0 2rem;
             padding: 0 10rem;
         }
-        header {
-            margin-left: 10%;
+        th {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        #brand {
+            font-weight: 1000;
+            color: #FCAE1E;
+        }
+        #price {
+            font-weight: 900;
+            color: orangered;
         }
     </style>
 
@@ -20,14 +45,14 @@
 <body>
 
 <header>
-    <h1 class="m-5">My Tool Store</h1>
+    <h1 class="m-5 text-center border border-dark border-5 bg-light">My Tool Store</h1>
 </header>
 
 <main>
 
     <div class="container">
 
-        <table class="table">
+        <table class="table text-center bg-light border border-dark border-5">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -92,22 +117,19 @@
                     for(let i = 0; i < data.length; i++) {
                         html += `<tr>
                                     <th scope="row">${[i + 1]}</th>
-                                    <td>${data[i].title}</td>
-                                    <td>${data[i].brand}</td>
-                                    <td>${data[i].quantity}</td>
-                                    <td>$${data[i].price}</td>
-                                    <td>${data[i].categories}</td>
+                                    <td id="title" class="text-start">${data[i].title}</td>
+                                    <td id="brand">${data[i].brand}</td>
+                                    <td id="qty">${data[i].quantity}</td>
+                                    <td id="price">$${data[i].price}</td>
+                                    <td id="categories">${data[i].categories}</td>
                                     <td>
                                     <img src="${data[i].img}" alt="tools" height="100px" width="100px">
                                     </td>
                                 </tr>`
                     }
-
                     tableBody.html(html);
-
                 });
         }
-
         fetchInventoryData();
 
 
