@@ -201,16 +201,21 @@
     //TODO: When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
 
 
-            $('h3').on('click', function(e) {
-                    e.preventDefault();
-                    $('ul').each(function() {
-                        const bolder = {
-                            'font-weight': 'bold',
-                            'text-decoration': 'underline',
-                        };
-                        $(this).children().css(bolder);
-                    })
-            })
+            // $('h3').on('click', function(e) {
+            //         e.preventDefault();
+            //         $('ul').each(function() {
+            //             const bolder = {
+            //                 'font-weight': 'bold',
+            //                 'text-decoration': 'underline',
+            //             };
+            //             $(this).children().css(bolder);
+            //         })
+            // })
+
+        $('h3').on('click', function(e) {
+            e.preventDefault();
+            $(this).next().css('font-weight', 'bold').css('text-decoration', 'underline');
+        })
 
 
 

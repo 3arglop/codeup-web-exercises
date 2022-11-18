@@ -209,101 +209,107 @@
 
 
     //CALLING THE DOM
-    const oneQ = $('#oneQ');
-    const oneA = $('#oneA');
-    const twoQ = $('#twoQ');
-    const twoA = $('#twoA');
-    const threeQ = $('#threeQ');
-    const threeA = $('#threeA');
-    const fourQ = $('#fourQ');
-    const fourA = $('#fourA');
-    const fiveQ = $('#fiveQ');
-    const fiveA = $('#fiveA');
-    const sixQ = $('#sixQ');
-    const sixA = $('#sixA');
-    const sevenQ = $('#sevenQ');
-    const sevenA = $('#sevenA');
-    const eightQ = $('#eightQ');
-    const eightA = $('#eightA');
-    const nineQ = $('#nineQ');
-    const nineA = $('#nineA');
-    const tenQ = $('#tenQ');
-    const tenA = $('#tenA');
+    // const oneQ = $('#oneQ');
+    // const oneA = $('#oneA');
+    // const twoQ = $('#twoQ');
+    // const twoA = $('#twoA');
+    // const threeQ = $('#threeQ');
+    // const threeA = $('#threeA');
+    // const fourQ = $('#fourQ');
+    // const fourA = $('#fourA');
+    // const fiveQ = $('#fiveQ');
+    // const fiveA = $('#fiveA');
+    // const sixQ = $('#sixQ');
+    // const sixA = $('#sixA');
+    // const sevenQ = $('#sevenQ');
+    // const sevenA = $('#sevenA');
+    // const eightQ = $('#eightQ');
+    // const eightA = $('#eightA');
+    // const nineQ = $('#nineQ');
+    // const nineA = $('#nineA');
+    // const tenQ = $('#tenQ');
+    // const tenA = $('#tenA');
+    //
+    //
+    // $(window).ready(function() {
+    //
+    //     //1
+    //     oneQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         oneA.toggleClass('invisible');
+    //     });
+    //
+    //     //2
+    //     twoQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         twoA.toggleClass('invisible');
+    //     });
+    //
+    //     //3
+    //     threeQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         threeA.toggleClass('invisible');
+    //     });
+    //
+    //     //4
+    //     fourQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         fourA.toggleClass('invisible');
+    //     });
+    //
+    //     //5
+    //     fiveQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         fiveA.toggleClass('invisible');
+    //     });
+    //
+    //     //6
+    //     sixQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         sixA.toggleClass('invisible');
+    //     });
+    //
+    //     //7
+    //     sevenQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         sevenA.toggleClass('invisible');
+    //     });
+    //
+    //     //8
+    //     eightQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         eightA.toggleClass('invisible');
+    //     });
+    //
+    //     //9
+    //     nineQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         nineA.toggleClass('invisible');
+    //     });
+    //
+    //     //10
+    //     tenQ.click(function(e) {
+    //         e.preventDefault();
+    //         $(this).toggleClass('highlightedStyles');
+    //         tenA.toggleClass('invisible');
+    //     });
+    //
+    // });
 
-
-    $(window).ready(function() {
-
-        //1
-        oneQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            oneA.toggleClass('invisible');
-        });
-
-        //2
-        twoQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            twoA.toggleClass('invisible');
-        });
-
-        //3
-        threeQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            threeA.toggleClass('invisible');
-        });
-
-        //4
-        fourQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            fourA.toggleClass('invisible');
-        });
-
-        //5
-        fiveQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            fiveA.toggleClass('invisible');
-        });
-
-        //6
-        sixQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            sixA.toggleClass('invisible');
-        });
-
-        //7
-        sevenQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            sevenA.toggleClass('invisible');
-        });
-
-        //8
-        eightQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            eightA.toggleClass('invisible');
-        });
-
-        //9
-        nineQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            nineA.toggleClass('invisible');
-        });
-
-        //10
-        tenQ.click(function(e) {
-            e.preventDefault();
-            $(this).toggleClass('highlightedStyles');
-            tenA.toggleClass('invisible');
-        });
-
-    });
+    //REFACTORED MY LONG CODE INTO FOUR LINES YAYAYAYAYAYAYAY!!!!
+    $('dt').on('click', function(e) {
+        e.preventDefault();
+        $(this).toggleClass('highlightedStyles').next(this).toggleClass('invisible');
+    })
 
 
 </script>
