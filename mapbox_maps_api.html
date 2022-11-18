@@ -38,16 +38,20 @@
 </head>
 <body class="text-center m-2 p-2 bg-dark text-light">
 
-<header class="m-4">
+<header class="mx-4">
 
-    <h1>My First Weather Map</h1>
-    <h5>Introducing: <span class="text-warning">Top Restaurants of 2022</span> </h5>
+    <div class="mb-4">
+        <h1 class="text-warning">Top Restaurants of 2022</h1>
+        <h5>(according to <span class="text-danger">The New York Times</span>)</h5>
+    </div>
+
+    <a href="https://www.nytimes.com/interactive/2022/dining/best-restaurants-list-america.html#locust" class="fs-5 text-warning bg-danger p-2 border border-light border-3 text-decoration-none rounded-pill">source</a>
 
 </header>
 
 <main>
 
-    <section class="m-3 px-5">
+    <section class="mt-4 px-5">
 
         <div class="border border-light border-5">
             <div id="map">
@@ -68,6 +72,8 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <!--CREDENTIALS-->
 <script src="js/keys.js"></script>
+<!--GEOCODER UTIL METHODS-->
+<script src="js/mapbox-geocoder-utils.js"></script>
 
 
 <script>
@@ -78,7 +84,7 @@
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/dark-v10', // style URL
         center: [-95.7129, 37.0902], // starting position [lng, lat]
-        zoom: 3.6, // starting zoom'
+        zoom: 3.5, // starting zoom'
         projection: 'mercator'
     });
     map.on('style.load', () => {
@@ -142,6 +148,140 @@
         .addTo(map);
 
 
+    const restaurants = [
+        {
+            address: "63 Salem Street Boston MA 02113, USA",
+            name: "Neptune Oyster",
+            lng: -71.05597,
+            lat: 42.36345,
+            popupHTML: '<h1 id="boston" style="color: #2C3077; font-size: 1.1rem">Neptune Oyster <br> <span style="color: #6DC6FC">Boston, Massachusetts</span></h1><a href="https://www.neptuneoyster.com/" style="color: white">Website</a>',
+            colorMarker: '#CE3E52'
+        },
+        {
+            address: "2305 12th Ave S. Nashville, TN 37204",
+            name: "Locust",
+            lng: -86.78924,
+            lat: 36.12790,
+            popupHTML: '<h1 id="nashville" style="color: #F6C64D; font-size: 1.1rem">Locust <br> <span style="color: #FE462D">Nashville, Tennessee</span></h1><a href="https://www.locustnashville.com/" style="color: white">Website</a>',
+            colorMarker: '#D2AB00'
+        },
+        {
+            name: "Anajak Thai",
+            popupHTML: '<h1 id="la" style="color: #979081; font-size: 1.1rem">Anajak Thai <br> <span style="color: #794120">Los Angeles, California</span></h1><a href="https://www.anajakthai.com/" style="color: white">Website</a>',
+            colorMarker: 'black'
+
+        },
+        {
+            name: "Kitty’s Cafe",
+            popupHTML: '<h1 id="" style="color: red; font-size: 1.1rem">Kitty’s Cafe <br> <span style="color: darkred">Kansas City, Missouri</span></h1><a href="https://www.instagram.com/kittyscafekc/`" style="color: white">Website</a>',
+            colorMarker: 'red'
+
+        },
+        {
+            name: "Tito & Pep",
+            popupHTML: '<h1 id="" style="color: #43C0B0; font-size: 1.1rem">Tito & Pep <br> <span style="color: #E47E3B">Tucson, Arizona</span></h1><a href="https://www.titoandpep.com/" style="color: white">Website</a>',
+            colorMarker: '#FDFAE9'
+
+        },
+        {
+            name: "Yeyo’s",
+            popupHTML: '<h1 id="" style="color: #F6C64D; font-size: 1.1rem">Yeyo’s <br> <span style="color: #585655">Nashville, Tennessee</span></h1><a href="https://www.yeyosnwa.com/" style="color: white">Website</a>',
+            colorMarker: '#973D65'
+
+        }
+]
+    console.log(restaurants);
+    console.log(new mapboxgl.LngLat(restaurants[0].lng, restaurants[0].lat)); //Object { lng: -71.05597, lat: 42.36345 }
+    console.log(restaurants[0].address); //63 Salem Street Boston MA 02113, USA (string)
+
+
+    //THIS WORKS!!!!!!!!!!!
+    const placeMarkerAndPopup = (info, token, map) => {
+        for(let restaurant of restaurants) {
+            // console.table(restaurant);
+            geocode(restaurant.name, MAPBOX_TOKEN).then((coordinates) => {
+                console.log(coordinates);
+                let popup = new mapboxgl.Popup()
+                    .setHTML(restaurant.popupHTML);
+                let marker = new mapboxgl.Marker({
+                    color: restaurant.colorMarker,
+                    draggable: false
+                })
+                    .setLngLat(coordinates)
+                    .setPopup(popup)
+                    .addTo(map);
+            });
+        }
+    }
+    placeMarkerAndPopup(restaurants, MAPBOX_TOKEN, map);
+
+
+//*****************************************************************************************//
+
+    //TRYING TO FIGURE OUT HOW TO ITERATE USING THE REVERSE GEOCODE METHOD
+
+    //MAPBOX EXAMPLE
+    const ll = new mapboxgl.LngLat(-123.9749, 40.7736);
+    console.log(ll); //Object { lng: -123.9749, lat: 40.7736 }
+
+    //CODEUP'S EXAMPLE
+    // reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_TOKEN).then(function(results) {
+    //     // logs the address for The Alamo
+    //     console.log(results);
+    // });
+    //
+    // geocode("600 Navarro St #350, San Antonio, TX 78205", MAPBOX_TOKEN).then(function(result) {
+    //     console.log(result);
+    //     map.setCenter(result);
+    //     map.setZoom(2);
+    // });
+
+    //CONVERSION FROM AN ARRAY TO AN OBJECT USING MAPBOXS' METHOD
+    const neptuneCoords = mapboxgl.LngLat.convert([-71.05597, 42.36345]);
+    console.log(neptuneCoords); //Object { lng: -71.05597, lat: 42.36345 }
+
+
+
+    // function placeMarkerAndPopup(info, token, map) {
+    //     for(let i = 0; i < info.length; i++) {
+    //         geocode(info[i].address, MAPBOX_TOKEN).then(function(coordinates) {
+    //             console.log(geocode(info[i].address, MAPBOX_TOKEN)); //Array [ -93.278435, 44.93395 ] & Array [ -93.278435, 44.93395 ]
+    //             // reverseGeocode(info[i].address, token)
+    //             // console.log(reverseGeocode(`${info[i].address}`, token)); //"Loughborough University, University Road, Loughborough, England LE11 3TP, United Kingdom"
+    //             const popup = new mapboxgl.Popup()
+    //                 .setHTML(info[i].popupHTML);
+    //             const marker = new mapboxgl.Marker({
+    //                 color: info[i].colorMarker,
+    //                 draggable: false
+    //             })
+    //                 .setLngLat([`${info[i].lng}, ${info[i].lat}`])
+    //                 .setPopup(popup)
+    //                 .addTo(map);
+    //         });
+    //     }
+    // }
+    //
+    // placeMarkerAndPopup(restaurants, MAPBOX_TOKEN, map);
+
+
+    // const placeMarkerAndPopup = (info, token, map) => {
+    //     for(let restaurant of restaurants) {
+    //         // console.table(restaurant);
+    //         reverseGeocode({lng: restaurant.lng, lat: restaurant.lat}, MAPBOX_TOKEN).then((coordinates) => {
+    //             let popup = new mapboxgl.Popup()
+    //                 .setHTML(restaurant.popupHTML);
+    //             let marker = new mapboxgl.Marker({
+    //                 color: restaurant.colorMarker,
+    //                 draggable: false
+    //             })
+    //                 .setLngLat([`${restaurant.lng}, ${restaurant.lat}`])
+    //                 .setPopup(popup)
+    //                 .addTo(map);
+    //         });
+    //     }
+    // }
+
+    // console.log(coordinates); //Dragon Wok, 3752 Nicollet Ave, Minneapolis, Minnesota 55409, United States & Dragon Wok, 3752 Nicollet Ave, Minneapolis, Minnesota 55409, United States
 
 </script>
 </body>
