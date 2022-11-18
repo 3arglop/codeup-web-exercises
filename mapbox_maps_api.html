@@ -9,6 +9,12 @@
 
     <!--BOOTSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!--MAPBOX-->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 
     <style>
@@ -16,29 +22,26 @@
             width: 100%;
             height: 600px;
         }
-        .mapboxgl-ctrl.mapboxgl-ctrl-group {
-            position: absolute;
-            top: 150px;
-            display: flex;
-            flex-direction: column;
+        .mapboxgl-popup-content {
+            background-color: black;
+            border-radius: 18px;
+            border: 2px solid white;
+            padding: 1rem;
+            font-family: 'Fredoka One', cursive;
         }
-        .mapboxgl-ctrl.mapboxgl-ctrl-group button {
-            height: 2rem;
-            width: 1.5rem;
+        body {
+            font-family: 'Fredoka One', cursive;
         }
-        /*.mapboxgl-ctrl-attrib-inner a, .mapboxgl-ctrl-attrib-button {*/
-        /*    visibility: hidden;*/
-        /*}*/
     </style>
 
 
 </head>
-<body class="text-center m-2 p-2">
+<body class="text-center m-2 p-2 bg-dark text-light">
 
 <header class="m-4">
 
     <h1>My First Weather Map</h1>
-    <h5>Introducing: <span>My Favorite Restaurants!</span> </h5>
+    <h5>Introducing: <span class="text-warning">Top Restaurants of 2022</span> </h5>
 
 </header>
 
@@ -46,7 +49,7 @@
 
     <section class="m-3 px-5">
 
-        <div class="border border-dark border-5">
+        <div class="border border-light border-5">
             <div id="map">
                 <!---DYNAMIC HTML-->
             </div>
@@ -59,54 +62,83 @@
 
 <!--BOOTSTRAP JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<!--MAPBOX JS-->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
 <!--JQUERY-->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <!--CREDENTIALS-->
 <script src="js/keys.js"></script>
-<!--MAPBOX JS-->
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+
 
 <script>
-
     "use strict";
 
-    mapboxgl.accessToken = WEATHER_API;
+    mapboxgl.accessToken = MAPBOX_TOKEN;
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/dark-v10', // style URL
         center: [-95.7129, 37.0902], // starting position [lng, lat]
-        zoom: 3.6 // starting zoom'
+        zoom: 3.6, // starting zoom'
+        projection: 'mercator'
     });
-
-        map.on('load', () => {
-            map.setFog({});
+    map.on('style.load', () => {
+        map.setFog({});
     });
 
     map.addControl(new mapboxgl.NavigationControl());
 
 
-    // const popup = new mapboxgl.Popup()
-    //     .setHTML('<h1 id="LM" style="color: darkblue; font-size: 2rem">Lincoln Memorial</h1><a href="https://www.nps.gov/linc/index.htm">Website</a>');
-    //
-    // const marker = new mapboxgl.Marker({
-    //     color: 'red',
-    //     draggable: true
-    // })
-    //     .setLngLat([-77.0502, 38.8893])
-    //     .setPopup(popup)
-    //     .addTo(map);
-    //
-    // marker.on('dragend', function() {
-    //     var coordinates = marker.getLngLat();
-    //     console.log(coordinates);
-    //     var location = $('#coordinates');
-    //     location.html('Latitude: ' + coordinates.lat + '<br> Longitude: ' + coordinates.lng);
-    // });
+    //SETTING UP MY POP-UPS WITH SET INFO OF EACH RESTAURANT
+    const popupSmoke = new mapboxgl.Popup()
+        .setHTML('<h1 id="arlington" style="color: #6A3925; font-size: 1.1rem">Smoke’N Ash B.B.Q. <span style="color: #C09891">Arlington, Texas</span></h1><a href="https://www.smokenashbbq.net/" style="color: white">Website</a>');
 
-    // Set marker options.
-    const marker = new mapboxgl.Marker({
-        color: "#FFFFFF",
-    }).setLngLat([30.5, 50.5])
+    const popupCanje = new mapboxgl.Popup()
+        .setHTML('<h1 id="austin" style="color: #E9C4CB; font-size: 1.1rem">Canje <br> <span style="color: #C75B13">Austin, Texas</span></h1><a href="https://canjeatx.com/" style="color: white">Website</a>');
+
+    const popupLittleMad = new mapboxgl.Popup()
+        .setHTML('<h1 id="nyc" style="color: #A5AB70; font-size: 1.1rem">LittleMad <br> <span style="color: #A22E24">New York City, NY</span></h1><a href="https://www.littlemadnyc.com/" style="color: white">Website</a>');
+
+    const popupZitsSum = new mapboxgl.Popup()
+        .setHTML('<h1 id="florida" style="color: #5FA98E; font-size: 1.1rem">Zits Sum <br> <span style="color: #778E3C">Coral Gables, Florida</span></h1><a href="https://www.zitzsum.com/" style="color: white">Website</a>');
+
+    const popupEvettes = new mapboxgl.Popup()
+        .setHTML('<h1 id="chicago" style="color: #AE6AA4; font-size: 1.1rem">Evette`s <br> <span style="color: #F4B8B8">Chicago, Illinois</span></h1><a href="https://www.evetteschicago.com/" style="color: white">Website</a>');
+
+
+    //SETTING MY MARKERS WITH POPUPS
+    const smokeARL = new mapboxgl.Marker({
+        color: "orange",
+        draggable: false
+    }).setLngLat([-97.11451, 32.62628])
+        .setPopup(popupSmoke)
+        .addTo(map);
+
+    const canjeAST = new mapboxgl.Marker({
+        color: "purple",
+        draggable: false
+    }).setLngLat([-97.72142, 30.26185])
+        .setPopup(popupCanje)
+        .addTo(map);
+
+    const littleMadNY = new mapboxgl.Marker({
+        color: "lime",
+        draggable: false
+    }).setLngLat([-73.98511, 40.74526])
+        .setPopup(popupLittleMad)
+        .addTo(map);
+
+    const zitsSumFL = new mapboxgl.Marker({
+        color: "cyan",
+        draggable: false
+    }).setLngLat([-80.26227, 25.75161])
+        .setPopup(popupZitsSum)
+        .addTo(map);
+
+    const evettesCHI = new mapboxgl.Marker({
+        color: "#E38483",
+        draggable: false
+    }).setLngLat([-87.63841, 41.91855])
+        .setPopup(popupEvettes)
         .addTo(map);
 
 
