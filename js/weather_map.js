@@ -6,12 +6,15 @@ console.log("Hello from Weather Map JS 😜");
 const displayCityName = $('#cityName');
 const displayCoords = $('#showCoords');
 const displayForecast = document.getElementById('showForecast');
+const userInput = document.getElementById("userInput");
+const submit = document.getElementById('btn');
 
 
 //TODO: FETCHING OPEN WEATHER DATA BY CALLING THE API
-const fetchWeatherData = (cityName) => {
+const fetchWeatherData = () => {
+    let cityInput = userInput.value;
     const openWeatherKey = OPEN_WEATHER;
-    const URL = `https://api.openweathermap.org/data/2.5/forecast/?q=${cityName}&units=imperial&cnt=40&appid=${openWeatherKey}`
+    const URL = `https://api.openweathermap.org/data/2.5/forecast/?q=${cityInput}&units=imperial&cnt=40&appid=${openWeatherKey}`
 
     fetch(URL)
         .then(response => {
@@ -23,14 +26,14 @@ const fetchWeatherData = (cityName) => {
         })
         .then(data => {
             console.log(data);
-            // console.table(data);
+            console.table(data);
 
             //TODO: CONVERTING OPEN WEATHER'S DATA INTO MY OWN DATABASE
             const weatherData = data;
             const newData = myDataBase(weatherData);
 
             console.log(newData);
-            // console.table(newData);
+
 
             //TODO: RUNNING MY FUNCTIONS TO RENDER DYNAMIC HTML BASED ON THE USERS INPUT
             renderCityCountry(newData);
@@ -38,77 +41,55 @@ const fetchWeatherData = (cityName) => {
             placeMarkerAndPopup(newData, MAPBOX_TOKEN, map);
             // renderAllForecastCards(newData);
 
-            // console.log(newData.time);
-            // console.log(Object.keys(newData));
-            // console.log(Object.values(newData));
-            // const dataEntries = Object.entries(newData);
+            return newData;
 
         });
 }
 
-//TODO: FUNCTION TO CONVERT AN ARRAY INTO A STRING
+//TODO: FUNCTION TO GROUP EACH DAY INTO ONE ARRAY BASED ON FIVE DAYS
+function iterateThruData(data) {
 
-// function iterateThruData(data) {
-//     let value;
-//     let eachDataInfo;
-//     const newArr = [];
-//     for(let items of Object.entries(data)) {
-//         // for(let i = 0; value.length; i++) {
-//         //     eachDataInfo = value[i];
-//         //     console.log(eachDataInfo);
-//         // }
-//     }
-//     // console.log(eachDataInfo);
-//
-//     console.log(value);
-//
-//     // newArr.push(value);
-//     //
-//     // console.log(newArr);
-//     // console.log(newArr.length);
-//     //
-//     // return newArr;
-// }
+    //TODO: DECLARING MY VARIABLES
+    let j = data.length, //TODO: COMING FROM FUNC: myDataBase & var: oneObjOfData = 40                         (LENGTH)
+        day = [],
+        chunk = 8,
+        subset;
+
+    //TODO: 5 DAYS = 40HRS OF DATA
+    //TODO: ONE DAY = 8HRS OF DATA
+    //TODO: EACH SET OF DATA WILL CONTAIN 8 ARRAYS
+    for(let i = 0; i < j; i += chunk) {
+        subset = data.slice(i, i + chunk);
+        day.push(subset);
+    }
+
+    return day;
+}
 
 
 //TODO: FUNCTION TO EXTRACT DATA
-
 function myDataBase(weatherData) {
 
     //TODO: CREATING MY NEW DATABASE
     const fiveDayForecast = {};
 
+    const oneObjOfData = weatherData.list.map(each => each);
+    console.log(oneObjOfData);
+
+    console.log(oneObjOfData.length); //40
+
+    const oneDayData = iterateThruData(oneObjOfData);
+    console.log(oneDayData);
+
+
     //TODO: USING THE MAP METHOD TO EXTRACT THE DATA
     fiveDayForecast.cityName = weatherData.city.name;
     fiveDayForecast.countryName = weatherData.city.country;
     fiveDayForecast.coordinates = weatherData.city.coord;
+    fiveDayForecast.days = oneDayData;
 
-    fiveDayForecast.time = weatherData.list.map(time => time.dt_txt);
-    fiveDayForecast.temperature = weatherData.list.map(temp => temp.main.temp);
-    fiveDayForecast.min = weatherData.list.map(minTemp => minTemp.main.temp_min);
-    fiveDayForecast.max = weatherData.list.map(maxTemp => maxTemp.main.temp_max);
-
-    const weatherInfo = weatherData.list.map(weather => weather.weather);
-    fiveDayForecast.description = weatherInfo.map(single => {
-        for(let i = 0; i < single.length; i++) {
-            const eachDescription = single[i].description;
-            return eachDescription;
-        }
-    });
-    fiveDayForecast.icon = weatherInfo.map(single => {
-        for(let i = 0; i < single.length; i++) {
-            const eachIcon = single[i].icon;
-            return eachIcon;
-        }
-    });
-
-    fiveDayForecast.speed = weatherData.list.map(speed => speed.wind.speed);
-    fiveDayForecast.pressure = weatherData.list.map(pressure => pressure.main.pressure);
-    fiveDayForecast.humidity = weatherData.list.map(humidity => humidity.main.humidity);
-
-    // console.log(fiveDayForecast);
-    // console.log(typeof fiveDayForecast);
-
+    console.table(fiveDayForecast);
+    console.log(Object.keys(fiveDayForecast));
     return fiveDayForecast;
 }
 
@@ -214,6 +195,60 @@ const renderCoords = (data) => {
 // }
 
 
-// fetchWeatherData("london");
-fetchWeatherData("mexico city");
-// fetchWeatherData("dallas");
+//TODO: ADDING EVENT LISTENERS
+submit.addEventListener("click", (e) => fetchWeatherData());
+
+
+
+//*******************************************************************************************************//
+
+//TODO: UN-USED FUNCTIONS
+
+// for (let i in data) {
+//     if(i < 8) {
+//         console.log(data[i]);
+//     }
+// }
+// // console.log(day);
+// return day;
+
+// for(let i = 0; i < data.length; i++) {
+//     if(i % 2 === 0) {
+//         day.push(data[i])
+//     }
+// }
+
+// const result = Object.entries(object).map(data => {
+//     return {
+//         'id': data[0],
+//         'value': data[1]
+//     }
+// })
+
+
+// let result: any = [];
+//       this.listOfItems.forEach(p => {
+//         var key = p.group;
+//         result[key] = result[key] || [];
+//         result[key].push(p);
+//       })
+
+// for (let i in oneObjOfData) {
+//     let obj = oneObjOfData[i];
+//     console.log(obj);
+// }
+
+// oneObjOfData.forEach(function(oneSet){
+//     if(oneSet % 2 === 0) {
+//         return oneSet;
+//     }
+//     fiveDayForecast.day = oneSet;
+// });
+
+//TODO: THIS GIVES ME 5 DAYS!
+// for(let i = 0; i < data.length; i += 8) {
+//     day.push(data[i]);
+// }
+//
+// return day;
+
