@@ -74,12 +74,10 @@ function myDataBase(weatherData) {
     const fiveDayForecast = {};
 
     const oneObjOfData = weatherData.list.map(each => each);
-    console.log(oneObjOfData);
 
     console.log(oneObjOfData.length); //40
 
     const oneDayData = iterateThruData(oneObjOfData);
-    console.log(oneDayData);
 
     //TODO: USING THE MAP METHOD TO EXTRACT THE DATA
     fiveDayForecast.cityName = weatherData.city.name;
@@ -90,34 +88,28 @@ function myDataBase(weatherData) {
     console.log(fiveDayForecast);
     console.table(fiveDayForecast);
 
-    const averageTemp = averageEachTemp(fiveDayForecast);
-    console.log(averageTemp);
-
-    const averageMax = averageEachMax(fiveDayForecast);
-    console.log(averageMax);
-
-    const averageMin = averageEachMin(fiveDayForecast);
-    console.log(averageMin);
-
-    const averageHumidity = averageEachHumidity(fiveDayForecast);
-    console.log(averageHumidity);
-
-    const averagePressure = averageEachPressure(fiveDayForecast);
-    console.log(averagePressure);
+    const averageMain = averageEachMainData(fiveDayForecast);
 
     const averageSpeed = averageEachSpeed(fiveDayForecast);
-    console.log(averageSpeed);
 
+    fiveDayForecast.days.mainData = averageMain;
+    fiveDayForecast.days.speed = averageSpeed;
+
+    console.log(fiveDayForecast);
+    console.table(fiveDayForecast);
 
     return fiveDayForecast;
 }
 
 //TODO: FINDS THE AVERAGE OF EACH DAY AND RETURNS An ARRAY STRING
-
-const averageEachTemp = (data) => {
+const averageEachMainData = (data) => {
     let obj,
-        average,
-        arr = [];
+        mainData = {},
+        temp = [],
+        max = [],
+        min = [],
+        humidityAverage = [],
+        pressureAverage = []
 
     const daysData = data.days;
     // console.log(daysData);
@@ -126,92 +118,32 @@ const averageEachTemp = (data) => {
         obj = daysData[i];
         // console.log(obj);
 
-        average = obj.reduce((total, next) => total + next.main.temp, 0) / obj.length;
-        // console.log(Math.floor(average));
+        let averageTemp = obj.reduce((total, next) => total + next.main.temp, 0) / obj.length;
+        temp.push(Math.floor(averageTemp));
 
-        arr.push(Math.floor(average));
+        let averageMax = obj.reduce((total, next) => total + next.main.temp_max, 0) / obj.length;
+        max.push(Math.floor(averageMax));
+
+        let averageMin = obj.reduce((total, next) => total + next.main.temp_min, 0) / obj.length;
+        min.push(Math.floor(averageMin));
+
+        let averageHumidity = obj.reduce((total, next) => total + next.main.humidity, 0) / obj.length;
+        humidityAverage.push(Math.floor(averageHumidity));
+
+        let averagePressure = obj.reduce((total, next) => total + next.main.pressure, 0) / obj.length;
+        pressureAverage.push(Math.floor(averagePressure));
+
     }
-    return arr
-}
 
-const averageEachMax = (data) => {
-    let obj,
-        average,
-        arr = [];
-
-    const daysData = data.days;
-    // console.log(daysData);
-
-    for(let i in daysData) {
-        obj = daysData[i];
-        // console.log(obj);
-
-        average = obj.reduce((total, next) => total + next.main.temp_max, 0) / obj.length;
-        // console.log(Math.floor(average));
-
-        arr.push(Math.floor(average));
+    mainData = {
+        temperature: temp,
+        maxTemp: max,
+        minTemp: min,
+        humidity: humidityAverage,
+        pressure: pressureAverage
     }
-    return arr
-}
 
-const averageEachMin = (data) => {
-    let obj,
-        average,
-        arr = [];
-
-    const daysData = data.days;
-    // console.log(daysData);
-
-    for(let i in daysData) {
-        obj = daysData[i];
-        // console.log(obj);
-
-        average = obj.reduce((total, next) => total + next.main.temp_min, 0) / obj.length;
-        // console.log(Math.floor(average));
-
-        arr.push(Math.floor(average));
-    }
-    return arr
-}
-
-const averageEachHumidity = (data) => {
-    let obj,
-        average,
-        arr = [];
-
-    const daysData = data.days;
-    // console.log(daysData);
-
-    for(let i in daysData) {
-        obj = daysData[i];
-        // console.log(obj);
-
-        average = obj.reduce((total, next) => total + next.main.humidity, 0) / obj.length;
-        // console.log(Math.floor(average));
-
-        arr.push(Math.floor(average));
-    }
-    return arr
-}
-
-const averageEachPressure = (data) => {
-    let obj,
-        average,
-        arr = [];
-
-    const daysData = data.days;
-    // console.log(daysData);
-
-    for(let i in daysData) {
-        obj = daysData[i];
-        // console.log(obj);
-
-        average = obj.reduce((total, next) => total + next.main.pressure, 0) / obj.length;
-        // console.log(Math.floor(average));
-
-        arr.push(Math.floor(average));
-    }
-    return arr
+    return mainData
 }
 
 const averageEachSpeed = (data) => {
@@ -234,23 +166,26 @@ const averageEachSpeed = (data) => {
     return arr
 }
 
+// const averageEachSpeed = (data) => {
+//     let obj,
+//         average,
+//         arr = [];
+//
+//     const daysData = data.days;
+//     // console.log(daysData);
+//
+//     for(let i in daysData) {
+//         obj = daysData[i];
+//         // console.log(obj);
+//
+//         average = obj.reduce((total, next) => total + next.wind.speed, 0) / obj.length;
+//         // console.log(Math.floor(average));
+//
+//         arr.push((average).toFixed(2));
+//     }
+//     return arr
+// }
 
-// IDEAL OBJECT STRUCTURE
-
-// constructor function
-const buildFinalData = (arrayOfData) => {
-    let finalData = [];
-    // loop through the data
-    // let obj = {
-    //     cityName: arrayOfData.cityName
-    //     coordinates: arrayOfData.coordinates
-    //     avg_temp: averageEachDay(arrayOfData.days)
-    //     avg_min_temp,
-    //     avg_max_temp
-    //  }
-    // }
-
-}
 
 //TODO: CALLING THE MAPBOX API AND RENDERING MAP INTO MY HTML
 mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -322,6 +257,7 @@ const renderCoords = (data) => {
 // }
 
 //TODO: THIS FUNCTION WILL RENDER ALL 5 CARDS FOR EACH DAY USING MY NEW DATABASE
+
 // const renderAllForecastCards = (fiveForecast) => {
 //     let html = '';
 //     for(let i = 0; i <  fiveForecast.length; i++) {
@@ -440,4 +376,85 @@ submit.addEventListener("click", (e) => fetchWeatherData());
 //             </ul>
 // {/*    </div>*/}
 // {/*</div>*/}
+
+
+// const averageEachMax = (data) => {
+//     let obj,
+//         average,
+//         arr = [];
+//
+//     const daysData = data.days;
+//     // console.log(daysData);
+//
+//     for(let i in daysData) {
+//         obj = daysData[i];
+//         // console.log(obj);
+//
+//         average = obj.reduce((total, next) => total + next.main.temp_max, 0) / obj.length;
+//         // console.log(Math.floor(average));
+//
+//         arr.push(Math.floor(average));
+//     }
+//     return arr
+// }
+//
+// const averageEachMin = (data) => {
+//     let obj,
+//         average,
+//         arr = [];
+//
+//     const daysData = data.days;
+//     // console.log(daysData);
+//
+//     for(let i in daysData) {
+//         obj = daysData[i];
+//         // console.log(obj);
+//
+//         average = obj.reduce((total, next) => total + next.main.temp_min, 0) / obj.length;
+//         // console.log(Math.floor(average));
+//
+//         arr.push(Math.floor(average));
+//     }
+//     return arr
+// }
+//
+// const averageEachHumidity = (data) => {
+//     let obj,
+//         average,
+//         arr = [];
+//
+//     const daysData = data.days;
+//     // console.log(daysData);
+//
+//     for(let i in daysData) {
+//         obj = daysData[i];
+//         // console.log(obj);
+//
+//         average = obj.reduce((total, next) => total + next.main.humidity, 0) / obj.length;
+//         // console.log(Math.floor(average));
+//
+//         arr.push(Math.floor(average));
+//     }
+//     return arr
+// }
+//
+// const averageEachPressure = (data) => {
+//     let obj,
+//         average,
+//         arr = [];
+//
+//     const daysData = data.days;
+//     // console.log(daysData);
+//
+//     for(let i in daysData) {
+//         obj = daysData[i];
+//         // console.log(obj);
+//
+//         average = obj.reduce((total, next) => total + next.main.pressure, 0) / obj.length;
+//         // console.log(Math.floor(average));
+//
+//         arr.push(Math.floor(average));
+//     }
+//     return arr
+// }
 
