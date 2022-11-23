@@ -50,7 +50,7 @@ const fetchWeatherData = () => {
 function iterateThruData(data) {
 
     //TODO: DECLARING MY VARIABLES
-    let j = data.length, //TODO: COMING FROM FUNC: myDataBase & var: oneObjOfData = 40                         (LENGTH)
+    let j = data.length,  //TODO: COMING FROM FUNC: myDataBase & var: oneObjOfData = 40 (LENGTH)
         day = [],
         chunk = 8,
         subset;
@@ -66,42 +66,56 @@ function iterateThruData(data) {
     return day;
 }
 
+//TODO: THE FOLLOWING FUNCTIONS TARGETS EACH VALUE AND EXTRACTS INTO 1 ARRAY OF 5 ARRAYS (PER DAY) WITH 8 VALUES (HOURLY)
+const everyDescData = (data) => {
+    let obj,
+        weatherObjs,
+        weatherStamp,
+        descData = []
 
-//TODO: FUNCTION TO EXTRACT DATA
-function myDataBase(weatherData) {
+    const daysData = data.days;
 
-    //TODO: CREATING MY NEW DATABASE
-    const fiveDayForecast = {};
+    for(let i in daysData) {
+        obj = daysData[i];
 
-    const oneObjOfData = weatherData.list.map(each => each);
+        weatherStamp = obj.map(each => each.weather);
 
-    console.log(oneObjOfData.length); //40
+        for (let i = 0; i < weatherStamp.length; i++) {
+            weatherObjs = weatherStamp[i][0];
 
-    const oneDayData = iterateThruData(oneObjOfData);
+            const {description} = weatherObjs;
 
-    //TODO: USING THE MAP METHOD TO EXTRACT THE DATA
-    fiveDayForecast.cityName = weatherData.city.name;
-    fiveDayForecast.countryName = weatherData.city.country;
-    fiveDayForecast.coordinates = weatherData.city.coord;
-    fiveDayForecast.days = oneDayData;
-
-    console.log(fiveDayForecast);
-    console.table(fiveDayForecast);
-
-    const averageMain = averageEachMainData(fiveDayForecast);
-
-    const averageSpeed = averageEachSpeed(fiveDayForecast);
-
-    fiveDayForecast.days.mainData = averageMain;
-    fiveDayForecast.days.speed = averageSpeed;
-
-    console.log(fiveDayForecast);
-    console.table(fiveDayForecast);
-
-    return fiveDayForecast;
+            descData.push(description);
+        }
+    }
+    return descData;
 }
 
-//TODO: FINDS THE AVERAGE OF EACH DAY AND RETURNS An ARRAY STRING
+const everyIconData = (data) => {
+    let obj,
+        weatherObjs,
+        weatherStamp,
+        iconData = []
+
+    const daysData = data.days;
+
+    for(let i in daysData) {
+        obj = daysData[i];
+
+        weatherStamp = obj.map(each => each.weather);
+
+        for (let i = 0; i < weatherStamp.length; i++) {
+            weatherObjs = weatherStamp[i][0];
+
+            const { icon } = weatherObjs;
+
+            iconData.push(icon);
+        }
+    }
+    return iconData;
+}
+
+//TODO: FINDS THE AVERAGE OF EACH DAY AND RETURNS AN ARRAY NUMBERS
 const averageEachMainData = (data) => {
     let obj,
         mainData = {},
@@ -116,7 +130,6 @@ const averageEachMainData = (data) => {
 
     for(let i in daysData) {
         obj = daysData[i];
-        // console.log(obj);
 
         let averageTemp = obj.reduce((total, next) => total + next.main.temp, 0) / obj.length;
         temp.push(Math.floor(averageTemp));
@@ -152,39 +165,70 @@ const averageEachSpeed = (data) => {
         arr = [];
 
     const daysData = data.days;
-    // console.log(daysData);
 
     for(let i in daysData) {
         obj = daysData[i];
-        // console.log(obj);
 
         average = obj.reduce((total, next) => total + next.wind.speed, 0) / obj.length;
-        // console.log(Math.floor(average));
 
-        arr.push((average).toFixed(2));
+        arr.push(parseInt((average).toFixed(2)));
     }
     return arr
 }
 
-// const averageEachSpeed = (data) => {
-//     let obj,
-//         average,
-//         arr = [];
-//
-//     const daysData = data.days;
-//     // console.log(daysData);
-//
-//     for(let i in daysData) {
-//         obj = daysData[i];
-//         // console.log(obj);
-//
-//         average = obj.reduce((total, next) => total + next.wind.speed, 0) / obj.length;
-//         // console.log(Math.floor(average));
-//
-//         arr.push((average).toFixed(2));
-//     }
-//     return arr
-// }
+
+//TODO: FUNCTION TO EXTRACT DATA
+function myDataBase(weatherData) {
+
+    //TODO: CREATING MY NEW DATABASE
+    const fiveDayForecast = {};
+
+    const oneObjOfData = weatherData.list.map(each => each);
+
+    // console.log(oneObjOfData.length); //40
+
+    const oneDayData = iterateThruData(oneObjOfData);
+
+    //TODO: USING THE MAP METHOD TO EXTRACT THE DATA
+    fiveDayForecast.cityName = weatherData.city.name;
+    fiveDayForecast.countryName = weatherData.city.country;
+    fiveDayForecast.coordinates = weatherData.city.coord;
+    fiveDayForecast.days = oneDayData;
+
+    console.log(fiveDayForecast);
+    console.table(fiveDayForecast);
+
+    //TODO: CREATING AN OBJECT: fiveDayForecast.days & PROPERTIES WITH THE FOLLOWING VALUES:
+    const averageMain = averageEachMainData(fiveDayForecast);
+
+    const averageSpeed = averageEachSpeed(fiveDayForecast);
+
+
+
+    const resultDesc = everyDescData(fiveDayForecast);
+    console.log(resultDesc);
+    const eachDayDesc = iterateThruData(resultDesc);
+    console.log(eachDayDesc);
+
+
+    const resultIcon = everyIconData(fiveDayForecast);
+    console.log(resultIcon);
+    const eachDayIcon = iterateThruData(resultIcon);
+    console.log(eachDayIcon);
+
+
+
+
+    fiveDayForecast.days.mainData = averageMain;
+    fiveDayForecast.days.speed = averageSpeed;
+    fiveDayForecast.days.icon = eachDayIcon;
+    fiveDayForecast.days.description = eachDayDesc;
+
+    console.log(fiveDayForecast);
+    console.table(fiveDayForecast);
+
+    return fiveDayForecast;
+}
 
 
 //TODO: CALLING THE MAPBOX API AND RENDERING MAP INTO MY HTML
@@ -193,7 +237,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/dark-v10', // style URL
     center: [-95.7129, 37.0902], // starting position [lng, lat]
-    zoom: 2, // starting zoom'
+    zoom: 0.5, // starting zoom'
     projection: 'mercator'
 });
 map.on('style.load', () => {
