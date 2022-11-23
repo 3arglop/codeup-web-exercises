@@ -42,7 +42,6 @@ const fetchWeatherData = () => {
             // renderAllForecastCards(newData);
 
             return newData;
-
         });
 }
 
@@ -176,7 +175,6 @@ const averageEachSpeed = (data) => {
     return arr
 }
 
-
 //TODO: FUNCTION TO EXTRACT DATA
 function myDataBase(weatherData) {
 
@@ -199,28 +197,17 @@ function myDataBase(weatherData) {
     console.table(fiveDayForecast);
 
     //TODO: CREATING AN OBJECT: fiveDayForecast.days & PROPERTIES WITH THE FOLLOWING VALUES:
+    const mondayFriday = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday"];
     const averageMain = averageEachMainData(fiveDayForecast);
-
     const averageSpeed = averageEachSpeed(fiveDayForecast);
-
-
-
     const resultDesc = everyDescData(fiveDayForecast);
-    console.log(resultDesc);
     const eachDayDesc = iterateThruData(resultDesc);
-    console.log(eachDayDesc);
-
-
     const resultIcon = everyIconData(fiveDayForecast);
-    console.log(resultIcon);
     const eachDayIcon = iterateThruData(resultIcon);
-    console.log(eachDayIcon);
 
-
-
-
-    fiveDayForecast.days.mainData = averageMain;
-    fiveDayForecast.days.speed = averageSpeed;
+    fiveDayForecast.days.averageMainData = averageMain;
+    fiveDayForecast.days.averageMainData.eachDay = mondayFriday;
+    fiveDayForecast.days.averageMainData.speed = averageSpeed;
     fiveDayForecast.days.icon = eachDayIcon;
     fiveDayForecast.days.description = eachDayDesc;
 
@@ -229,7 +216,6 @@ function myDataBase(weatherData) {
 
     return fiveDayForecast;
 }
-
 
 //TODO: CALLING THE MAPBOX API AND RENDERING MAP INTO MY HTML
 mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -289,15 +275,27 @@ const renderCoords = (data) => {
 //TODO: CREATING THE DYNAMIC HTML FOR MY CARD (SINGLE)
 
 // function renderAllForecastCards(data) {
+//     let html = "";
 //     for(let i = 0; i < data.length; i++) {
-//         html += `<p>${data.days[i]}</p>`
-//         console.log(html);
+//         // html += `<div class="card" style="width: 18rem;">
+//         //         <div class="card-body text-center">
+//         //             <h6 class="card-header mb-2 text-muted">${data.averageMainData.eachDay[i]}</h6>
+//         //             <h5 class="card-title">${data.averageMainData.temperature[i]}</h5>
+//         //             <div>
+//         //                 <span>min: ${data.averageMainData.minTemp[i]}</span> |
+//         //                 <span>max: ${data.averageMainData.maxTemp[i]}}</span>
+//         //             </div>
+//         //             <img src="IMG/codeup-logo.png" alt="icon" width="95px" height="80px" class="my-3">
+//         //             <ul class="list-group list-group-flush">
+//         //                 <li class="list-group-item">Wind Speed: ${data.averageMainData.speed[i]} mph</li>
+//         //                 <li class="list-group-item">Pressure: ${data.averageMainData.pressure[i]} inHg</li>
+//         //                 <li class="list-group-item">Humidity: ${data.averageMainData.humidity[i]}%</li>
+//         //             </ul>
+//         //         </div>
+//         //     </div>`
 //     }
 //
-//
-//     return html;
-//     console.log(html);
-//     return displayForecast.innerHTML = html;
+//     // return displayForecast.innerHTML = html;
 // }
 
 //TODO: THIS FUNCTION WILL RENDER ALL 5 CARDS FOR EACH DAY USING MY NEW DATABASE
@@ -316,189 +314,4 @@ const renderCoords = (data) => {
 //TODO: ADDING EVENT LISTENERS
 submit.addEventListener("click", (e) => fetchWeatherData());
 
-
-
-//*****************************************************************************************//
-
-//TODO: UN-USED FUNCTIONS
-
-// for (let i in data) {
-//     if(i < 8) {
-//         console.log(data[i]);
-//     }
-// }
-// // console.log(day);
-// return day;
-
-// for(let i = 0; i < data.length; i++) {
-//     if(i % 2 === 0) {
-//         day.push(data[i])
-//     }
-// }
-
-// const result = Object.entries(object).map(data => {
-//     return {
-//         'id': data[0],
-//         'value': data[1]
-//     }
-// })
-
-
-// let result: any = [];
-//       this.listOfItems.forEach(p => {
-//         var key = p.group;
-//         result[key] = result[key] || [];
-//         result[key].push(p);
-//       })
-
-// for (let i in oneObjOfData) {
-//     let obj = oneObjOfData[i];
-//     console.log(obj);
-// }
-
-// oneObjOfData.forEach(function(oneSet){
-//     if(oneSet % 2 === 0) {
-//         return oneSet;
-//     }
-//     fiveDayForecast.day = oneSet;
-// });
-
-// function rename(data) {
-//     const arr = [];
-//
-//     const { 0: dayOne } = data.days;
-//     let objOne = { dayOne };
-//
-//     const { 1: dayTwo } = data.days;
-//     let objTwo = { dayTwo };
-//
-//     const { 2: dayThree } = data.days;
-//     let objThree = { dayThree };
-//
-//     const { 3: dayFour } = data.days;
-//     let objFour = { dayFour };
-//
-//     const { 4: dayFive } = data.days;
-//     let objFive = { dayFive };
-//
-//     arr.push(objOne, objTwo, objThree, objFour, objFive);
-//
-//     return arr;
-// }
-
-// for(let i in daysData) {
-//     obj = daysData[i];
-//     console.log(obj);
-//
-//
-//     average = daysData.reduce((total, next) => total + next, 0) / daysData.length;
-//
-//     console.log(average);
-//
-// }
-
-// const females = people.filter(person => person.gender === 'female');
-
-// const average = females.reduce((total, next) => total + next.age, 0) / females.length;
-
-// <div className="card" style="width: 18rem;">
-//     <div className="card-body text-center">
-//         <h6 className="card-subtitle mb-2 text-muted">${oneDayForecast[i].time[i]}</h6>
-//         <h5 className="card-title">${oneDayForecast.temperature[i]}</h5>
-//         <div>
-//             <span id="min">${oneDayForecast[i].max[i]}</span>
-//             <span id="max">${oneDayForecast[i].min[i]}</span>
-//         </div>
-//         <img src="IMG/codeup-logo.png" alt="" width="95px" height="80px">
-//             <div className="card-header">
-//                 <span>${oneDayForecast[i].description[i]}</span>
-//             </div>
-//             <ul className="list-group list-group-flush">
-//                 <li className="list-group-item">Wind Speed: ${oneDayForecast[i].speed[i]} mph</li>
-//                 <li className="list-group-item">Pressure: ${oneDayForecast[i].pressure[i]} inHg</li>
-//                 <li className="list-group-item">Humidity: ${oneDayForecast[i].humidity[i]}%</li>
-//             </ul>
-// {/*    </div>*/}
-// {/*</div>*/}
-
-
-// const averageEachMax = (data) => {
-//     let obj,
-//         average,
-//         arr = [];
-//
-//     const daysData = data.days;
-//     // console.log(daysData);
-//
-//     for(let i in daysData) {
-//         obj = daysData[i];
-//         // console.log(obj);
-//
-//         average = obj.reduce((total, next) => total + next.main.temp_max, 0) / obj.length;
-//         // console.log(Math.floor(average));
-//
-//         arr.push(Math.floor(average));
-//     }
-//     return arr
-// }
-//
-// const averageEachMin = (data) => {
-//     let obj,
-//         average,
-//         arr = [];
-//
-//     const daysData = data.days;
-//     // console.log(daysData);
-//
-//     for(let i in daysData) {
-//         obj = daysData[i];
-//         // console.log(obj);
-//
-//         average = obj.reduce((total, next) => total + next.main.temp_min, 0) / obj.length;
-//         // console.log(Math.floor(average));
-//
-//         arr.push(Math.floor(average));
-//     }
-//     return arr
-// }
-//
-// const averageEachHumidity = (data) => {
-//     let obj,
-//         average,
-//         arr = [];
-//
-//     const daysData = data.days;
-//     // console.log(daysData);
-//
-//     for(let i in daysData) {
-//         obj = daysData[i];
-//         // console.log(obj);
-//
-//         average = obj.reduce((total, next) => total + next.main.humidity, 0) / obj.length;
-//         // console.log(Math.floor(average));
-//
-//         arr.push(Math.floor(average));
-//     }
-//     return arr
-// }
-//
-// const averageEachPressure = (data) => {
-//     let obj,
-//         average,
-//         arr = [];
-//
-//     const daysData = data.days;
-//     // console.log(daysData);
-//
-//     for(let i in daysData) {
-//         obj = daysData[i];
-//         // console.log(obj);
-//
-//         average = obj.reduce((total, next) => total + next.main.pressure, 0) / obj.length;
-//         // console.log(Math.floor(average));
-//
-//         arr.push(Math.floor(average));
-//     }
-//     return arr
-// }
 
