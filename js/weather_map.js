@@ -93,6 +93,22 @@ const everyIconData = (data) => {
     return iconData;
 }
 
+const getDates = (data) => {
+    let obj,
+        arr = [];
+
+    const daysData = data.days;
+
+    for(let i in daysData) {
+        obj = daysData[i];
+
+        for(let i = 0; i < obj.length; i++) {
+            arr.push(obj[i].dt_txt);
+        }
+    }
+    return arr;
+}
+
 //TODO: FINDS THE AVERAGE OF EACH DAY AND RETURNS AN ARRAY NUMBERS
 const averageEachMainData = (data) => {
     let obj,
@@ -154,20 +170,16 @@ const averageEachSpeed = (data) => {
     return arr
 }
 
-
-const getDates = (data) => {
+const datesForFiveDays = (data) => {
     let obj,
-        arr = [];
+        arr = []
 
-    const daysData = data.days;
-
-    for(let i in daysData) {
-        obj = daysData[i];
-
-        for(let i = 0; i < obj.length; i++) {
-            arr.push(obj[i].dt_txt);
-        }
+    for(let i in data) {
+        obj = data[i];
+        arr.push(obj[0]);
     }
+    console.log(arr);
+
     return arr;
 }
 
@@ -207,7 +219,7 @@ function myDataBase(weatherData) {
 
     const resultDates = getDates(fiveDayForecast);
     const eachDateForDay = iterateThruData(resultDates);
-
+    const result = datesForFiveDays(eachDateForDay);
 
     fiveDayForecast.days.averageMainData = averageMain;
     fiveDayForecast.days.averageMainData.eachDay = mondayFriday;
@@ -292,6 +304,7 @@ const renderAllForecastCards = (fiveForecast) => {
                   <td>${averageData.temperature[i]}°F</td>
                   <td>${averageData.minTemp[i]}°F</td>
                   <td>${averageData.maxTemp[i]}°F</td>
+                  <td>${averageData.speed[i]} mph</td>
                   <td>${averageData.humidity[i]}%</td>
                   <td>${averageData.pressure[i]} inHg</td>
                 </tr>`
