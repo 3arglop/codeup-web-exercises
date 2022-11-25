@@ -9,6 +9,10 @@ const displayCityName = $('#cityName');
 const displayCoords = $('#showCoords');
 const displayForecast = document.getElementById('showForecast');
 const displayDayOne = $('#dayOneCard');
+const displayDayTwo = $('#dayTwoCard');
+const displayDayThree = $('#dayThreeCard');
+const displayDayFour = $('#dayFourCard');
+const displayDayFive = $('#dayFiveCard');
 
 
 //TODO: FETCHING OPEN WEATHER DATA BY CALLING THE API
@@ -23,7 +27,6 @@ async function getOpenWeatherData() {
 
     return obj;
 }
-
 
 //TODO: FUNCTION TO GROUP EACH DAY INTO ONE ARRAY BASED ON FIVE DAYS
 function iterateThruData(data) {
@@ -151,6 +154,31 @@ const everyMainData = (data) => {
 
 }
 
+const getEverySpeed = (data) => {
+    let obj,
+        average,
+        speedStamps,
+        averageSpeed = [],
+        everySpeed = [],
+        arr = []
+
+    const daysData = data.days;
+
+    for(let i in daysData) {
+        obj = daysData[i];
+
+        average = obj.reduce((total, next) => total + next.wind.speed, 0) / obj.length;
+
+        speedStamps = obj.map(item => item.wind.speed);
+
+        averageSpeed.push(parseInt((average).toFixed(2)));
+        everySpeed.push(speedStamps);
+    }
+    arr.push(averageSpeed, everySpeed);
+
+    return arr
+}
+
 //TODO: FINDS THE AVERAGE OF EACH DAY AND RETURNS AN ARRAY NUMBERS
 const averageEachMainData = (data) => {
     let obj,
@@ -195,31 +223,6 @@ const averageEachMainData = (data) => {
     return mainData
 }
 
-const getEverySpeed = (data) => {
-    let obj,
-        average,
-        speedStamps,
-        averageSpeed = [],
-        everySpeed = [],
-        arr = []
-
-    const daysData = data.days;
-
-    for(let i in daysData) {
-        obj = daysData[i];
-
-        average = obj.reduce((total, next) => total + next.wind.speed, 0) / obj.length;
-
-        speedStamps = obj.map(item => item.wind.speed);
-
-        averageSpeed.push(parseInt((average).toFixed(2)));
-        everySpeed.push(speedStamps);
-    }
-    arr.push(averageSpeed, everySpeed);
-
-    return arr
-}
-
 const datesForFiveDays = (data) => {
     let obj,
         arr = []
@@ -230,7 +233,6 @@ const datesForFiveDays = (data) => {
     }
     return arr;
 }
-
 
 //TODO: FUNCTION TO EXTRACT DATA
 function myDataBase(weatherData) {
@@ -373,6 +375,7 @@ const renderAllForecastCards = (forecastData) => {
     displayForecast.innerHTML = html;
 }
 
+//TODO: THE FOLLOWING FUNCTIONS WILL RENDER ONE DAY WORTH OF DATA INTO ITS RESPECTED SLIDE BASED ON MY HTML. TAKING THE DATA FROM MY DATABASE
 const renderDayOneCard = (forecastData) => {
 
     const dayData = forecastData.days;
@@ -401,6 +404,118 @@ const renderDayOneCard = (forecastData) => {
     }
     displayDayOne.html(html);
 }
+const renderDayTwoCard = (forecastData) => {
+
+    const dayData = forecastData.days;
+
+    let html = "";
+    for(let i = 0; i < dayData.length; i++) {
+        html += `<div class="card" style="width: 18rem;">
+                <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[1][i]}</h6>
+                <h5 class="card-title">${Math.floor(dayData.temp[1][i])}°F</h5>
+                 <div>
+                <span>min: ${Math.floor(dayData.minTemp[1][i])}°F</span> |
+                <span>max: ${Math.floor(dayData.maxTemp[1][i])}°F</span>
+                </div>
+                <img src="http://openweathermap.org/img/wn/${dayData.icon[1][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
+                 <div class="card-header">
+                <span>${dayData.description[1][i]}</span>
+                </div>
+                 <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[1][i])} mph</li>
+                <li class="list-group-item">Pressure: ${dayData.pressure[1][i]} inHg</li>
+                <li class="list-group-item">Humidity: ${dayData.humidity[1][i]}%</li>
+                 </ul>                      
+                </div>
+                </div>`
+    }
+    displayDayTwo.html(html);
+}
+const renderDayThreeCard = (forecastData) => {
+
+    const dayData = forecastData.days;
+
+    let html = "";
+    for(let i = 0; i < dayData.length; i++) {
+        html += `<div class="card" style="width: 18rem;">
+                <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[2][i]}</h6>
+                <h5 class="card-title">${Math.floor(dayData.temp[2][i])}°F</h5>
+                 <div>
+                <span>min: ${Math.floor(dayData.minTemp[2][i])}°F</span> |
+                <span>max: ${Math.floor(dayData.maxTemp[2][i])}°F</span>
+                </div>
+                <img src="http://openweathermap.org/img/wn/${dayData.icon[2][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
+                 <div class="card-header">
+                <span>${dayData.description[2][i]}</span>
+                </div>
+                 <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[2][i])} mph</li>
+                <li class="list-group-item">Pressure: ${dayData.pressure[2][i]} inHg</li>
+                <li class="list-group-item">Humidity: ${dayData.humidity[2][i]}%</li>
+                 </ul>
+                </div>
+                </div>`
+    }
+    displayDayThree.html(html);
+}
+const renderDayFourCard = (forecastData) => {
+
+    const dayData = forecastData.days;
+
+    let html = "";
+    for(let i = 0; i < dayData.length; i++) {
+        html += `<div class="card" style="width: 18rem;">
+                <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[3][i]}</h6>
+                <h5 class="card-title">${Math.floor(dayData.temp[3][i])}°F</h5>
+                 <div>
+                <span>min: ${Math.floor(dayData.minTemp[3][i])}°F</span> |
+                <span>max: ${Math.floor(dayData.maxTemp[3][i])}°F</span>
+                </div>
+                <img src="http://openweathermap.org/img/wn/${dayData.icon[3][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
+                 <div class="card-header">
+                <span>${dayData.description[3][i]}</span>
+                </div>
+                 <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[3][i])} mph</li>
+                <li class="list-group-item">Pressure: ${dayData.pressure[3][i]} inHg</li>
+                <li class="list-group-item">Humidity: ${dayData.humidity[3][i]}%</li>
+                 </ul>
+                </div>
+                </div>`
+    }
+    displayDayFour.html(html);
+}
+const renderDayFiveCard = (forecastData) => {
+
+    const dayData = forecastData.days;
+
+    let html = "";
+    for(let i = 0; i < dayData.length; i++) {
+        html += `<div class="card" style="width: 18rem;">
+                <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[4][i]}</h6>
+                <h5 class="card-title">${Math.floor(dayData.temp[4][i])}°F</h5>
+                 <div>
+                <span>min: ${Math.floor(dayData.minTemp[4][i])}°F</span> |
+                <span>max: ${Math.floor(dayData.maxTemp[4][i])}°F</span>
+                </div>
+                <img src="http://openweathermap.org/img/wn/${dayData.icon[4][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
+                 <div class="card-header">
+                <span>${dayData.description[4][i]}</span>
+                </div>
+                 <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[4][i])} mph</li>
+                <li class="list-group-item">Pressure: ${dayData.pressure[4][i]} inHg</li>
+                <li class="list-group-item">Humidity: ${dayData.humidity[4][i]}%</li>
+                 </ul>
+                </div>
+                </div>`
+    }
+    displayDayFive.html(html);
+}
 
 //TODO: ADDING EVENT LISTENERS
 submit.addEventListener("click", function(e) {
@@ -417,6 +532,10 @@ submit.addEventListener("click", function(e) {
         placeMarkerAndPopup(newData);
         renderAllForecastCards(newData);
         renderDayOneCard(newData);
+        renderDayTwoCard(newData);
+        renderDayThreeCard(newData);
+        renderDayFourCard(newData);
+        renderDayFiveCard(newData);
 
     })();
 });
