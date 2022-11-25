@@ -110,6 +110,47 @@ const getDates = (data) => {
     return arr;
 }
 
+const everyMainData = (data) => {
+    let obj,
+        mainStamps,
+        tempForty = [],
+        maxFourty = [],
+        minFourty = [],
+        humidityFourty = [],
+        pressureFourty = [],
+        allData = []
+
+    const daysData = data.days;
+
+    for (let i in daysData) {
+        obj = daysData[i];
+
+        mainStamps = obj.map(each => each.main);
+
+        for (let i = 0; i < mainStamps.length; i++) {
+
+            const { temp, temp_max, temp_min, humidity, pressure } = mainStamps[i];
+
+            tempForty.push(temp);
+            minFourty.push(temp_min);
+            maxFourty.push(temp_max);
+            humidityFourty.push(humidity);
+            pressureFourty.push(pressure);
+        }
+    }
+
+    const tempDaily = iterateThruData(tempForty);
+    const maxDaily = iterateThruData(maxFourty);
+    const minDaily = iterateThruData(minFourty);
+    const humidityDaily = iterateThruData(humidityFourty);
+    const pressureDaily = iterateThruData(pressureFourty);
+
+    allData.push(tempDaily, maxDaily, minDaily, humidityDaily, pressureDaily);
+
+    return allData;
+
+}
+
 //TODO: FINDS THE AVERAGE OF EACH DAY AND RETURNS AN ARRAY NUMBERS
 const averageEachMainData = (data) => {
     let obj,
@@ -154,10 +195,13 @@ const averageEachMainData = (data) => {
     return mainData
 }
 
-const averageEachSpeed = (data) => {
+const getEverySpeed = (data) => {
     let obj,
         average,
-        arr = [];
+        speedStamps,
+        averageSpeed = [],
+        everySpeed = [],
+        arr = []
 
     const daysData = data.days;
 
@@ -166,8 +210,13 @@ const averageEachSpeed = (data) => {
 
         average = obj.reduce((total, next) => total + next.wind.speed, 0) / obj.length;
 
-        arr.push(parseInt((average).toFixed(2)));
+        speedStamps = obj.map(item => item.wind.speed);
+
+        averageSpeed.push(parseInt((average).toFixed(2)));
+        everySpeed.push(speedStamps);
     }
+    arr.push(averageSpeed, everySpeed);
+
     return arr
 }
 
@@ -195,6 +244,7 @@ function myDataBase(weatherData) {
 
     const oneDayData = iterateThruData(oneObjOfData);
 
+
     //TODO: USING THE MAP METHOD TO EXTRACT THE DATA
     fiveDayForecast.cityName = weatherData.city.name;
     fiveDayForecast.countryName = weatherData.city.country;
@@ -203,7 +253,7 @@ function myDataBase(weatherData) {
 
     //TODO: CREATING AN OBJECT: fiveDayForecast.days & PROPERTIES WITH THE FOLLOWING VALUES:
     const averageMain = averageEachMainData(fiveDayForecast);
-    const averageSpeed = averageEachSpeed(fiveDayForecast);
+    const speedData = getEverySpeed(fiveDayForecast);
 
     const resultDesc = everyDescData(fiveDayForecast);
     const eachDayDesc = iterateThruData(resultDesc);
@@ -215,12 +265,21 @@ function myDataBase(weatherData) {
     const eachDateForDay = iterateThruData(resultDates);
     const fiveDaysStamps = datesForFiveDays(eachDateForDay);
 
+    const main = everyMainData(fiveDayForecast);
+
+
     fiveDayForecast.days.averageMainData = averageMain;
-    fiveDayForecast.days.averageMainData.speed = averageSpeed;
+    fiveDayForecast.days.averageMainData.speed = speedData[0];
     fiveDayForecast.days.averageMainData.date = fiveDaysStamps;
     fiveDayForecast.days.icon = eachDayIcon;
     fiveDayForecast.days.description = eachDayDesc;
     fiveDayForecast.days.dates = eachDateForDay;
+    fiveDayForecast.days.windSpeed = speedData[1];
+    fiveDayForecast.days.temp = main[0];
+    fiveDayForecast.days.maxTemp = main[1];
+    fiveDayForecast.days.minTemp = main[2];
+    fiveDayForecast.days.humidity = main[3];
+    fiveDayForecast.days.pressure = main[4];
 
     // console.log(fiveDayForecast);
     // console.table(fiveDayForecast);
@@ -306,7 +365,7 @@ const renderAllForecastCards = (forecastData) => {
                   <td>${averageData.temperature[i]}°F</td>
                   <td>${averageData.minTemp[i]}°F</td>
                   <td>${averageData.maxTemp[i]}°F</td>
-                  <td>${averageData.speed[i]} mph</td>
+                   <td>${averageData.speed[i]} mph</td>
                   <td>${averageData.humidity[i]}%</td>
                   <td>${averageData.pressure[i]} inHg</td>
                 </tr>`
@@ -323,19 +382,19 @@ const renderDayOneCard = (forecastData) => {
         html += `<div class="card" style="width: 18rem;">
                 <div class="card-body text-center">
                 <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[0][i]}</h6>
-                <h5 class="card-title">42.01</h5>
+                <h5 class="card-title">${Math.floor(dayData.temp[0][i])}°F</h5>
                  <div>
-                <span>min: 41.94</span> |
-                <span>max: 46.11</span>
+                <span>min: ${Math.floor(dayData.minTemp[0][i])}°F</span> |
+                <span>max: ${Math.floor(dayData.maxTemp[0][i])}°F</span>
                 </div>
                 <img src="http://openweathermap.org/img/wn/${dayData.icon[0][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
                  <div class="card-header">
                 <span>${dayData.description[0][i]}</span>
                 </div>
                  <ul class="list-group list-group-flush">
-                <li class="list-group-item">Wind Speed: 5.57 mph</li>
-                <li class="list-group-item">Pressure: 1031 inHg</li>
-                <li class="list-group-item">Humidity: 51%</li>
+                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[0][i])} mph</li>
+                <li class="list-group-item">Pressure: ${dayData.pressure[0][i]} inHg</li>
+                <li class="list-group-item">Humidity: ${dayData.humidity[0][i]}%</li>
                  </ul>                      
                 </div>
                 </div>`
