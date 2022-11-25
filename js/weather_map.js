@@ -3,11 +3,12 @@
 console.log("Hello from Weather Map JS 😜");
 
 //TODO: CALLING THE DOM
+const userInput = document.getElementById("userInput");
+const submit = document.getElementById('btn');
 const displayCityName = $('#cityName');
 const displayCoords = $('#showCoords');
 const displayForecast = document.getElementById('showForecast');
-const userInput = document.getElementById("userInput");
-const submit = document.getElementById('btn');
+const displayDayOne = $('#dayOneCard');
 
 
 //TODO: FETCHING OPEN WEATHER DATA BY CALLING THE API
@@ -178,8 +179,6 @@ const datesForFiveDays = (data) => {
         obj = data[i];
         arr.push(obj[0]);
     }
-    console.log(arr);
-
     return arr;
 }
 
@@ -195,7 +194,6 @@ function myDataBase(weatherData) {
     // console.log(oneObjOfData.length); //40
 
     const oneDayData = iterateThruData(oneObjOfData);
-    // console.log(oneDayData);
 
     //TODO: USING THE MAP METHOD TO EXTRACT THE DATA
     fiveDayForecast.cityName = weatherData.city.name;
@@ -203,11 +201,7 @@ function myDataBase(weatherData) {
     fiveDayForecast.coordinates = weatherData.city.coord;
     fiveDayForecast.days = oneDayData;
 
-    // console.log(fiveDayForecast);
-    // console.table(fiveDayForecast);
-
     //TODO: CREATING AN OBJECT: fiveDayForecast.days & PROPERTIES WITH THE FOLLOWING VALUES:
-    const mondayFriday = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday"];
     const averageMain = averageEachMainData(fiveDayForecast);
     const averageSpeed = averageEachSpeed(fiveDayForecast);
 
@@ -219,11 +213,11 @@ function myDataBase(weatherData) {
 
     const resultDates = getDates(fiveDayForecast);
     const eachDateForDay = iterateThruData(resultDates);
-    const result = datesForFiveDays(eachDateForDay);
+    const fiveDaysStamps = datesForFiveDays(eachDateForDay);
 
     fiveDayForecast.days.averageMainData = averageMain;
-    fiveDayForecast.days.averageMainData.eachDay = mondayFriday;
     fiveDayForecast.days.averageMainData.speed = averageSpeed;
+    fiveDayForecast.days.averageMainData.date = fiveDaysStamps;
     fiveDayForecast.days.icon = eachDayIcon;
     fiveDayForecast.days.description = eachDayDesc;
     fiveDayForecast.days.dates = eachDateForDay;
@@ -249,13 +243,15 @@ map.on('style.load', () => {
 map.addControl(new mapboxgl.NavigationControl());
 
 
+//TODO: THE FOLLOWING FUNCTIONS WILL TAKE IN forecastData (PARAMETER) WHICH = newData (ARGUMENT FROM THE CLICK EVENT FUNC) AND EXTRACTING FROM MY fiveDayForecast DATABASE
+
 //TODO: CREATING MARKER AND POPUP TO SIGNAL WHERE THE USER IS AT IN THE MAP
-const placeMarkerAndPopup = (data, token, map) => {
-    // console.log(data);
-    geocode(data.cityName, MAPBOX_TOKEN).then((coordinates) => {
+const placeMarkerAndPopup = (forecastData, token, map) => {
+    // console.log(forecastData);
+    geocode(forecastData.cityName, MAPBOX_TOKEN).then((coordinates) => {
         // console.log(coordinates);
         let popup = new mapboxgl.Popup()
-            .setHTML(`<h5 class="px-3 my-2">${data.cityName},<br> ${data.countryName}</h5>`);
+            .setHTML(`<h5 class="px-3 my-2">${forecastData.cityName},<br> ${forecastData.countryName}</h5>`);
         let marker = new mapboxgl.Marker({
             color: "gold",
             draggable: false
@@ -266,26 +262,28 @@ const placeMarkerAndPopup = (data, token, map) => {
     });
 }
 
+// https://docs.mapbox.com/help/tutorials/use-mapbox-js-as-fallback/
+
 //TODO: THIS FUNCTION WILL RENDER THE CITY INFORMATION
-const renderCityCountry = (data) => {
+const renderCityCountry = (forecastData) => {
     // console.log(data);
     let html = "";
-    html = `<h4>${data.cityName}, ${data.countryName}</h4>`;
+    html = `<h4>${forecastData.cityName}, ${forecastData.countryName}</h4>`;
 
     return displayCityName.html(html);
 }
 
 //TODO: THIS FUNCTION WILL RENDER THE COORDINATES
-const renderCoords = (data) => {
+const renderCoords = (forecastData) => {
     // console.log(data);
     let html = "";
     html = `<h5>Longitude:
             <br>
-            <span id="currentLng">${data.coordinates.lon}</span>
+            <span id="currentLng">${forecastData.coordinates.lon}</span>
             </h5>
             <h5>Latitude:
             <br>
-            <span id="currentLat">${data.coordinates.lat}</span>
+            <span id="currentLat">${forecastData.coordinates.lat}</span>
             </h5>
             </div>`;
 
@@ -293,14 +291,18 @@ const renderCoords = (data) => {
 }
 
 //TODO: THIS FUNCTION WILL RENDER THE REST OF THE TABLE'S INFORMATION SHOWCASING ONLY THE AVERAGE DATA FROM MY DATABASE FOR FIVE DAYS ONLY
-const renderAllForecastCards = (fiveForecast) => {
+const renderAllForecastCards = (forecastData) => {
 
-    const averageData = fiveForecast.days.averageMainData;
+    const averageData = forecastData.days.averageMainData;
 
     let html = '';
     for(let i = 0; i < averageData.temperature.length; i++) {
-       html += `<tr>
-                  <th scope="row">${averageData.eachDay[i]}</th>
+
+        let dateWithHour = averageData.date[i];
+        let dateOnly = dateWithHour.slice(0, 10);
+
+        html += `<tr>
+                  <th scope="row">${dateOnly}</th>
                   <td>${averageData.temperature[i]}°F</td>
                   <td>${averageData.minTemp[i]}°F</td>
                   <td>${averageData.maxTemp[i]}°F</td>
@@ -312,6 +314,35 @@ const renderAllForecastCards = (fiveForecast) => {
     displayForecast.innerHTML = html;
 }
 
+const renderDayOneCard = (forecastData) => {
+
+    const dayData = forecastData.days;
+
+    let html = "";
+    for(let i = 0; i < dayData.length; i++) {
+        html += `<div class="card" style="width: 18rem;">
+                <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[0][i]}</h6>
+                <h5 class="card-title">42.01</h5>
+                 <div>
+                <span>min: 41.94</span> |
+                <span>max: 46.11</span>
+                </div>
+                <img src="http://openweathermap.org/img/wn/${dayData.icon[0][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
+                 <div class="card-header">
+                <span>${dayData.description[0][i]}</span>
+                </div>
+                 <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wind Speed: 5.57 mph</li>
+                <li class="list-group-item">Pressure: 1031 inHg</li>
+                <li class="list-group-item">Humidity: 51%</li>
+                 </ul>                      
+                </div>
+                </div>`
+    }
+    displayDayOne.html(html);
+}
+
 //TODO: ADDING EVENT LISTENERS
 submit.addEventListener("click", function(e) {
     e.preventDefault();
@@ -321,84 +352,12 @@ submit.addEventListener("click", function(e) {
 
         const newData = myDataBase(openWeatherData);
         console.log(newData);
-        console.table(newData);
-        console.log(newData.days.averageMainData);
-        console.table(newData.days.averageMainData);
 
         renderCityCountry(newData);
         renderCoords(newData);
         placeMarkerAndPopup(newData);
         renderAllForecastCards(newData);
+        renderDayOneCard(newData);
 
     })();
 });
-
-
-
-
-
-
-//TODO: CREATING THE DYNAMIC HTML FOR MY CARD (SINGLE)
-
-// function renderAllForecastCards(data) {
-//     let html = "";
-//     for(let i = 0; i < data.length; i++) {
-//         // html += `<div class="card" style="width: 18rem;">
-//         //         <div class="card-body text-center">
-//         //             <h6 class="card-header mb-2 text-muted">${data.averageMainData.eachDay[i]}</h6>
-//         //             <h5 class="card-title">${data.averageMainData.temperature[i]}</h5>
-//         //             <div>
-//         //                 <span>min: ${data.averageMainData.minTemp[i]}</span> |
-//         //                 <span>max: ${data.averageMainData.maxTemp[i]}}</span>
-//         //             </div>
-//         //             <img src="IMG/codeup-logo.png" alt="icon" width="95px" height="80px" class="my-3">
-//         //             <ul class="list-group list-group-flush">
-//         //                 <li class="list-group-item">Wind Speed: ${data.averageMainData.speed[i]} mph</li>
-//         //                 <li class="list-group-item">Pressure: ${data.averageMainData.pressure[i]} inHg</li>
-//         //                 <li class="list-group-item">Humidity: ${data.averageMainData.humidity[i]}%</li>
-//         //             </ul>
-//         //         </div>
-//         //     </div>`
-//     }
-//
-//     // return displayForecast.innerHTML = html;
-// }
-
-// let dayOne = [],
-//     dayTwo = [],
-//     dayThree = [],
-//     dayFour = [],
-//     dayFive = [],
-//     fiveDays = []
-//
-//
-// for (const key in averageData) {
-//     console.log(`${averageData[key][0]}`);
-//     dayOne.push(averageData[key][0]);
-//     dayTwo.push(averageData[key][1]);
-//     dayThree.push(averageData[key][2]);
-//     dayFour.push((averageData[key][3]));
-//     dayFive.push(averageData[key][4]);
-//
-// }
-//
-// fiveDays = [
-//     {
-//         one: dayOne
-//     },
-//     {
-//         two: dayTwo
-//     },
-//     {
-//         three: dayThree
-//     },
-//     {
-//         four: dayFour
-//     },
-//     {
-//         five: dayFive
-//     }
-// ]
-//
-// console.log(fiveDays);
-// console.table(fiveDays[0]);

@@ -11,3 +11,16 @@ body {
     right: 0;
     margin-right: 1rem;
 }
+
+#lineTop {
+    margin-bottom: .5rem !important;
+}
+
+#firstSlide {
+    margin: 0 0 .45rem 0 !important;
+    padding: 1rem 8rem !important;
+    background-image: url("../IMG/earthy-header.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
