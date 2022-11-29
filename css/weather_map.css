@@ -2,6 +2,239 @@ body {
     margin: 0;
     padding: 0;
 }
+
+nav {
+   background-color: #564D65;
+}
+
+nav h5 {
+    margin-top: .8rem;
+}
+
+nav button {
+    position: relative;
+    right: 3rem;
+}
+
+#topContent {
+    background-color: #F8FFF4;
+}
+
+#showToday h1 {
+    font-size: 5rem;
+}
+
+#showToday h2 {
+    font-size: 3.5rem;
+}
+
+main {
+    background-color: #CAB6CD;
+}
+
+#firstSlide {
+    padding: 1rem 8rem !important;
+    background-image: url("../IMG/sandy-view.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+}
+
+#secondSlide {
+    background-image: url("../IMG/wavvy.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#thirdSlide {
+    background-image: url("../IMG/abstract.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#fourthSlide{
+    background-image: url("../IMG/wavvy2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#fifthSlide{
+    background-image: url("../IMG/abstract2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#sixthSlide {
+    background-image: url("../IMG/wavvy3.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#dayOneCard, #dayTwoCard, #dayThreeCard, #dayFourCard, #dayFiveCard {
+    padding: 2rem 7.5rem 3rem !important;
+}
+
+table {
+    height: calc(100% - 4rem);
+    text-align: center;
+}
+
+tbody tr:hover {
+    background-color: black !important;
+    opacity: 80%;
+}
+
+th {
+    color: #E5ECE9;
+    text-shadow: 1px 1px #969A97;
+}
+
+tr span {
+    font-size: 1rem;
+    margin-top: .2rem;
+}
+
+/*font-weight: 500;*/
+
+#dateTable {
+    color: #CDC5B4;
+    text-shadow: 1px 1px #6D3D14;
+}
+
+#tempTable {
+    color: #ABE188;
+    text-shadow: 1px 1px #708B75;
+}
+
+#minTable {
+    color: #E7AD99;
+    text-shadow: 1px 1px #945D5E;
+}
+
+#maxTable {
+    color: #F3EEC3;
+    text-shadow: 1px 1px #D5AC4E;
+}
+
+#speedTable {
+    color: #AFD0BF;
+    text-shadow: 1px 1px #5F5449;
+    font-weight: 500;
+}
+
+#humidityTable {
+    color: #D5DCF9;
+    text-shadow: 1px 1px #2F131E;
+    font-weight: 500;
+}
+
+#pressureTable {
+    color: #C7AC92;
+    text-shadow: 1px 1px #CD533B;
+}
+
+#cardOne, #cardTwo, #cardThree, #cardFour, #cardFive {
+    opacity: 85% !important;
+}
+#cardOne h6, #cardTwo h6, #cardThree h6, #cardFour h6, #cardFive h6 {
+    font-size: .9rem;
+}
+#cardOne h5, #cardTwo h5, #cardThree h5, #cardFour h5, #cardFive h5 {
+    text-shadow: 3px 3px black;
+    font-weight: 800;
+}
+#cardOne .list-group-item, #cardTwo .list-group-item, #cardThree .list-group-item, #cardFour .list-group-item, #cardFive .list-group-item {
+    background-color: transparent;
+    color: white;
+}
+
+#cardOne img, #cardTwo img, #cardThree img, #cardFour img, #cardFive img {
+    background-color: black;
+    border-radius: 50%;
+    width: 100px;
+}
+
+#cardOne .card-header span, #cardTwo .card-header span, #cardThree .card-header span, #cardFour .card-header span, #cardFive .card-header span {
+    font-size: 1rem;
+    font-weight: 900;
+    text-shadow: 2px 2px white;
+}
+
+#cardOne {
+    background-color: #50723C !important;
+    border-color: #DDFC74 !important;
+}
+
+#cardOne h6 {
+    background-color: #DDFC74;
+}
+
+#cardOne .list-group-item {
+    border-color: #DDFC74 !important;
+}
+
+#cardTwo {
+    background-color: #0091Ad !important;
+    border: 5px solid #CEFDFF;
+}
+
+#cardTwo h6 {
+    background-color: #CEFDFF !important;
+}
+
+#cardTwo .list-group-item {
+    border-color: #9cfffa !important;
+}
+
+#cardThree {
+    background-color: #C20114 !important;
+    border-color: #fd91af !important;
+}
+
+#cardThree h6 {
+    background-color: #fd91af;
+}
+
+#cardThree .list-group-item {
+    border-color: #fd91af !important;
+}
+
+#cardFour {
+    background-color: #F85E00 !important;
+    border-color: #F7B801 !important;
+}
+
+#cardFour h6 {
+    background-color: #F7B801;
+}
+
+#cardFour .list-group-item {
+    border-color: #F7B801 !important;
+}
+
+#cardFive {
+    background-color: #3C1642 !important;
+    border-color: #C179B9 !important;
+}
+
+#cardFive h6 {
+    background-color: #C179B9;
+}
+
+#cardFive .list-group-item {
+    border-color: #C179B9 !important;
+}
+
+/*.carousel-control-prev:hover, .carousel-control-next:hover {*/
+/*    background-color: #333533 !important;*/
+/*    opacity: 50%;*/
+/*}*/
+
 #map {
     width: 100%;
     height: 400px;
@@ -12,15 +245,6 @@ body {
     margin-right: 1rem;
 }
 
-#lineTop {
-    margin-bottom: .5rem !important;
-}
-
-#firstSlide {
-    margin: 0 0 .45rem 0 !important;
-    padding: 1rem 8rem !important;
-    background-image: url("../IMG/earthy-header.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
+footer {
+    background-color: #DDFC74;
 }

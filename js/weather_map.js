@@ -13,7 +13,7 @@ const displayDayTwo = $('#dayTwoCard');
 const displayDayThree = $('#dayThreeCard');
 const displayDayFour = $('#dayFourCard');
 const displayDayFive = $('#dayFiveCard');
-
+const displayCurrentWeather = $('#showToday');
 
 //TODO: FETCHING OPEN WEATHER DATA BY CALLING THE API
 async function getOpenWeatherData() {
@@ -295,13 +295,14 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/dark-v10', // style URL
     center: [-95.7129, 37.0902], // starting position [lng, lat]
-    zoom: 0.5, // starting zoom'
+    zoom: 1, // starting zoom'
     projection: 'mercator'
 });
 map.on('style.load', () => {
     map.setFog({});
 });
 map.addControl(new mapboxgl.NavigationControl());
+
 
 
 //TODO: THE FOLLOWING FUNCTIONS WILL TAKE IN forecastData (PARAMETER) WHICH = newData (ARGUMENT FROM THE CLICK EVENT FUNC) AND EXTRACTING FROM MY fiveDayForecast DATABASE
@@ -334,6 +335,89 @@ const renderCityCountry = (forecastData) => {
     return displayCityName.html(html);
 }
 
+const renderCurrentWeather = (forecastData) => {
+    // console.log(forecastData);
+    let html = "";
+    html = `<div class="card w-75 border border-3 border-dark" style="width: 18rem;">
+    <div class="card-header">
+        <h5 class="text-muted">${forecastData.days.dates[0][0]}</h5>
+    </div>
+    <div class="card-header bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h1 class="card-title">${Math.floor(forecastData.days.temp[0][0])}
+                    <span class="position-absolute fs-3 mt-3">°F</span></h1>
+                    <h6>${forecastData.days.description[0][0]}</h6>
+                </div>
+
+                <div class="col-sm">
+                    <img src="http://openweathermap.org/img/wn/${forecastData.days.icon[0][0]}@2x.png" alt="" width="150px" height="150px">
+
+                </div>
+
+                <div class="col-sm">
+                    <h2 class="card-subtitle">${Math.floor(forecastData.days[0][0].main.feels_like)}
+                    <span class="position-absolute fs-3 mt-1">°F</span></h2>
+                    <p>Feels Like</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body lh-1">
+
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-6 d-flex">
+                    <div class="d-flex flex-grow-1">
+                        <i class="fa-solid fa-temperature-quarter fs-5 me-1"></i>
+                        <p>Min:</p>
+                    </div>
+                    <span class="fw-bold">${Math.floor(forecastData.days.minTemp[0][0])}°F</span>
+                </div>
+                <div class="col-6 d-flex">
+                    <div class="d-flex flex-grow-1">
+                        <i class="fa-solid fa-temperature-full fs-5 me-1"></i>
+                        <p>Max:</p>
+                    </div>
+                    <span class="fw-bold">${Math.floor(forecastData.days.maxTemp[0][0])}°F</span>
+                </div>
+                    <div class="col-6 d-flex">
+                        <div class="d-flex flex-grow-1">
+                            <i class="fa-solid fa-wind fs-5 me-1"></i>
+                            <p>Speed:</p>
+                        </div>
+                        <span class="fw-bold">${Math.floor(forecastData.days.windSpeed[0][0])}mph</span>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <div class="d-flex flex-grow-1">
+                            <i class="fa-solid fa-droplet fs-5 me-1"></i>
+                            <p>Humidity:</p>
+                        </div> 
+                        <span class="fw-bold">${forecastData.days.humidity[0][0]}%</span>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <div class="d-flex flex-grow-1">
+                            <i class="fa-solid fa-cloud-arrow-down fs-5 me-1"></i>
+                            <p>Pressure:</p>
+                        </div>
+                        <span class="fw-bold">${forecastData.days.pressure[0][0]}inHg</span>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <div class="d-flex flex-grow-1">
+                            <i class="fa-solid fa-eye fs-5 me-1"></i>
+                            <p>Visibility:</p>
+                        </div>
+                        <span class="fw-bold">${forecastData.days[0][0].visibility}m</span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+    return displayCurrentWeather.html(html);
+}
+
 //TODO: THIS FUNCTION WILL RENDER THE COORDINATES
 const renderCoords = (forecastData) => {
     // console.log(data);
@@ -362,14 +446,25 @@ const renderAllForecastCards = (forecastData) => {
         let dateWithHour = averageData.date[i];
         let dateOnly = dateWithHour.slice(0, 10);
 
-        html += `<tr>
-                  <th scope="row">${dateOnly}</th>
-                  <td>${averageData.temperature[i]}°F</td>
-                  <td>${averageData.minTemp[i]}°F</td>
-                  <td>${averageData.maxTemp[i]}°F</td>
-                   <td>${averageData.speed[i]} mph</td>
-                  <td>${averageData.humidity[i]}%</td>
-                  <td>${averageData.pressure[i]} inHg</td>
+        html += `<tr class="my-5">
+                  <th scope="row" class="fs-5" id="dateTable">${dateOnly}</th>
+                  <td class="fs-4" id="tempTable">${averageData.temperature[i]}
+                  <span class="position-absolute">°F</span></td>
+                  
+                  <td class="fs-4" id="minTable">${averageData.minTemp[i]}
+                  <span class="position-absolute">°F</span></td>
+                  
+                  <td class="fs-4" id="maxTable">${averageData.maxTemp[i]}
+                  <span class="position-absolute">°F</span></td>
+                  
+                   <td class="fs-4" id="speedTable">${averageData.speed[i]}
+                   <span class="position-absolute ms-1">mph</span></td>
+                   
+                  <td class="fs-4" id="humidityTable">${averageData.humidity[i]}
+                  <span class="position-absolute">%</span></td>
+                  
+                  <td class="fs-4" id="pressureTable">${averageData.pressure[i]}
+                  <span class="position-absolute ms-1">inHg</span></td>
                 </tr>`
     }
     displayForecast.innerHTML = html;
@@ -382,22 +477,22 @@ const renderDayOneCard = (forecastData) => {
 
     let html = "";
     for(let i = 0; i < dayData.length; i++) {
-        html += `<div class="card" style="width: 18rem;">
+        html += `<div class="card mx-2 text-light border border-5" style="width: 18rem;" id="cardOne">
                 <div class="card-body text-center">
-                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[0][i]}</h6>
-                <h5 class="card-title">${Math.floor(dayData.temp[0][i])}°F</h5>
+                <h6 class="card-subtitle mb-2 text-dark rounded-pill border border-light border-3">${dayData.dates[0][i]}</h6>
+                <h5 class="card-title fs-1">${Math.floor(dayData.temp[0][i])} <span class="fs-5 position-absolute mt-2">°F</span></h5>
                  <div>
-                <span>min: ${Math.floor(dayData.minTemp[0][i])}°F</span> |
-                <span>max: ${Math.floor(dayData.maxTemp[0][i])}°F</span>
+                <span class="m-1"><i class="fa-solid fa-temperature-low"></i> ${Math.floor(dayData.minTemp[0][i])}°F</span> |
+                <span class="m-1"><i class="fa-solid fa-temperature-high"></i> ${Math.floor(dayData.maxTemp[0][i])}°F</span>
                 </div>
                 <img src="http://openweathermap.org/img/wn/${dayData.icon[0][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
-                 <div class="card-header">
+                 <div class="card-header rounded-pill border border-3 border-dark bg-light text-dark p-0">
                 <span>${dayData.description[0][i]}</span>
                 </div>
                  <ul class="list-group list-group-flush">
-                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[0][i])} mph</li>
-                <li class="list-group-item">Pressure: ${dayData.pressure[0][i]} inHg</li>
-                <li class="list-group-item">Humidity: ${dayData.humidity[0][i]}%</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-wind"></i> ${Math.floor(dayData.windSpeed[0][i])} mph</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-cloud-arrow-down"></i> ${dayData.pressure[0][i]} inHg</li>
+                <li class="list-group-item"><i class="fa-solid fa-droplet"></i> ${dayData.humidity[0][i]}%</li>
                  </ul>                      
                 </div>
                 </div>`
@@ -410,22 +505,23 @@ const renderDayTwoCard = (forecastData) => {
 
     let html = "";
     for(let i = 0; i < dayData.length; i++) {
-        html += `<div class="card" style="width: 18rem;">
+        html += `<div class="card mx-2 text-light border border-5" style="width: 18rem;" id="cardTwo">
                 <div class="card-body text-center">
-                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[1][i]}</h6>
-                <h5 class="card-title">${Math.floor(dayData.temp[1][i])}°F</h5>
+                <h6 class="card-subtitle mb-2 text-dark rounded-pill border border-light border-3">${dayData.dates[1][i]}</h6>
+                <h5 class="card-title fs-1">${Math.floor(dayData.temp[1][i])}
+                <span class="fs-5 position-absolute mt-2">°F</span></h5>
                  <div>
-                <span>min: ${Math.floor(dayData.minTemp[1][i])}°F</span> |
-                <span>max: ${Math.floor(dayData.maxTemp[1][i])}°F</span>
+                <span class="m-1"><i class="fa-solid fa-temperature-low"></i> ${Math.floor(dayData.minTemp[1][i])}°F</span> |
+                <span class="m-1"><i class="fa-solid fa-temperature-high"></i> ${Math.floor(dayData.maxTemp[1][i])}°F</span>
                 </div>
                 <img src="http://openweathermap.org/img/wn/${dayData.icon[1][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
-                 <div class="card-header">
+                 <div class="card-header rounded-pill border border-3 border-dark bg-light text-dark p-0">
                 <span>${dayData.description[1][i]}</span>
                 </div>
                  <ul class="list-group list-group-flush">
-                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[1][i])} mph</li>
-                <li class="list-group-item">Pressure: ${dayData.pressure[1][i]} inHg</li>
-                <li class="list-group-item">Humidity: ${dayData.humidity[1][i]}%</li>
+                <li class="list-group-item border-bottom border-3" id="windEl"><i class="fa-solid fa-wind"></i> ${Math.floor(dayData.windSpeed[1][i])} mph</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-cloud-arrow-down"></i> ${dayData.pressure[1][i]} inHg</li>
+                <li class="list-group-item"><i class="fa-solid fa-droplet"></i> ${dayData.humidity[1][i]}%</li>
                  </ul>                      
                 </div>
                 </div>`
@@ -438,22 +534,23 @@ const renderDayThreeCard = (forecastData) => {
 
     let html = "";
     for(let i = 0; i < dayData.length; i++) {
-        html += `<div class="card" style="width: 18rem;">
+        html += `<div class="card mx-2 border border-5 text-light" style="width: 18rem;" id="cardThree">
                 <div class="card-body text-center">
-                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[2][i]}</h6>
-                <h5 class="card-title">${Math.floor(dayData.temp[2][i])}°F</h5>
+                <h6 class="card-subtitle mb-2 text-dark rounded-pill border border-light border-3">${dayData.dates[2][i]}</h6>
+                <h5 class="card-title fs-1">${Math.floor(dayData.temp[2][i])}
+                <span class="fs-5 position-absolute mt-2">°F</span></h5>
                  <div>
-                <span>min: ${Math.floor(dayData.minTemp[2][i])}°F</span> |
-                <span>max: ${Math.floor(dayData.maxTemp[2][i])}°F</span>
+                <span class="m-1"><i class="fa-solid fa-temperature-low"></i> ${Math.floor(dayData.minTemp[2][i])}°F</span> |
+                <span class="m-1"><i class="fa-solid fa-temperature-high"></i> ${Math.floor(dayData.maxTemp[2][i])}°F</span>
                 </div>
                 <img src="http://openweathermap.org/img/wn/${dayData.icon[2][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
-                 <div class="card-header">
+                 <div class="card-header rounded-pill border border-dark border-3 bg-light text-dark p-0">
                 <span>${dayData.description[2][i]}</span>
                 </div>
                  <ul class="list-group list-group-flush">
-                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[2][i])} mph</li>
-                <li class="list-group-item">Pressure: ${dayData.pressure[2][i]} inHg</li>
-                <li class="list-group-item">Humidity: ${dayData.humidity[2][i]}%</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-wind"></i> ${Math.floor(dayData.windSpeed[2][i])} mph</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-cloud-arrow-down"></i> ${dayData.pressure[2][i]} inHg</li>
+                <li class="list-group-item"><i class="fa-solid fa-droplet"></i> ${dayData.humidity[2][i]}%</li>
                  </ul>
                 </div>
                 </div>`
@@ -466,22 +563,23 @@ const renderDayFourCard = (forecastData) => {
 
     let html = "";
     for(let i = 0; i < dayData.length; i++) {
-        html += `<div class="card" style="width: 18rem;">
+        html += `<div class="card mx-2 text-light border border-5" style="width: 18rem;" id="cardFour">
                 <div class="card-body text-center">
-                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[3][i]}</h6>
-                <h5 class="card-title">${Math.floor(dayData.temp[3][i])}°F</h5>
+                <h6 class="card-subtitle mb-2 text-dark rounded-pill border border-light border-3">${dayData.dates[3][i]}</h6>
+                <h5 class="card-title fs-1">${Math.floor(dayData.temp[3][i])}
+                <span class="fs-5 position-absolute mt-2">°F</span></h5>
                  <div>
-                <span>min: ${Math.floor(dayData.minTemp[3][i])}°F</span> |
-                <span>max: ${Math.floor(dayData.maxTemp[3][i])}°F</span>
+                <span class="m-1"><i class="fa-solid fa-temperature-low"></i> ${Math.floor(dayData.minTemp[3][i])}°F</span> |
+                <span class="m-1"><i class="fa-solid fa-temperature-high"></i> ${Math.floor(dayData.maxTemp[3][i])}°F</span>
                 </div>
                 <img src="http://openweathermap.org/img/wn/${dayData.icon[3][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
-                 <div class="card-header">
+                 <div class="card-header rounded-pill border border-3 border-dark bg-light text-dark p-0">
                 <span>${dayData.description[3][i]}</span>
                 </div>
                  <ul class="list-group list-group-flush">
-                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[3][i])} mph</li>
-                <li class="list-group-item">Pressure: ${dayData.pressure[3][i]} inHg</li>
-                <li class="list-group-item">Humidity: ${dayData.humidity[3][i]}%</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-wind"></i> ${Math.floor(dayData.windSpeed[3][i])} mph</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-cloud-arrow-down"></i> ${dayData.pressure[3][i]} inHg</li>
+                <li class="list-group-item"><i class="fa-solid fa-droplet"></i> ${dayData.humidity[3][i]}%</li>
                  </ul>
                 </div>
                 </div>`
@@ -494,22 +592,23 @@ const renderDayFiveCard = (forecastData) => {
 
     let html = "";
     for(let i = 0; i < dayData.length; i++) {
-        html += `<div class="card" style="width: 18rem;">
+        html += `<div class="card mx-2 border border-5 text-light" style="width: 18rem;" id="cardFive">
                 <div class="card-body text-center">
-                <h6 class="card-subtitle mb-2 text-muted">${dayData.dates[4][i]}</h6>
-                <h5 class="card-title">${Math.floor(dayData.temp[4][i])}°F</h5>
+                <h6 class="card-subtitle mb-2 text-dark rounded-pill border border-light border-3">${dayData.dates[4][i]}</h6>
+                <h5 class="card-title fs-1">${Math.floor(dayData.temp[4][i])}
+                <span class="fs-5 position-absolute mt-2">°F</span></h5>
                  <div>
-                <span>min: ${Math.floor(dayData.minTemp[4][i])}°F</span> |
-                <span>max: ${Math.floor(dayData.maxTemp[4][i])}°F</span>
+                <span class="m-1"><i class="fa-solid fa-temperature-low"></i> ${Math.floor(dayData.minTemp[4][i])}°F</span> |
+                <span class="m-1"><i class="fa-solid fa-temperature-high"></i> ${Math.floor(dayData.maxTemp[4][i])}°F</span>
                 </div>
                 <img src="http://openweathermap.org/img/wn/${dayData.icon[4][i]}@2x.png" alt="icon" width="95px" height="80px" class="my-3">
-                 <div class="card-header">
+                 <div class="card-header rounded-pill border border-3 border-dark bg-light text-dark p-0">
                 <span>${dayData.description[4][i]}</span>
                 </div>
                  <ul class="list-group list-group-flush">
-                <li class="list-group-item">Wind Speed: ${Math.floor(dayData.windSpeed[4][i])} mph</li>
-                <li class="list-group-item">Pressure: ${dayData.pressure[4][i]} inHg</li>
-                <li class="list-group-item">Humidity: ${dayData.humidity[4][i]}%</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-wind"></i> ${Math.floor(dayData.windSpeed[4][i])} mph</li>
+                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-cloud-arrow-down"></i> ${dayData.pressure[4][i]} inHg</li>
+                <li class="list-group-item"><i class="fa-solid fa-droplet"></i> ${dayData.humidity[4][i]}%</li>
                  </ul>
                 </div>
                 </div>`
@@ -528,6 +627,7 @@ submit.addEventListener("click", function(e) {
         console.log(newData);
 
         renderCityCountry(newData);
+        renderCurrentWeather(newData);
         renderCoords(newData);
         placeMarkerAndPopup(newData);
         renderAllForecastCards(newData);
