@@ -346,7 +346,7 @@ const renderCurrentWeather = (forecastData) => {
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <h1 class="card-title">${Math.floor(forecastData.days.temp[0][0])}
+                    <h1 class="card-title m-0">${Math.floor(forecastData.days.temp[0][0])}
                     <span class="position-absolute fs-3 mt-3">°F</span></h1>
                     <h6>${forecastData.days.description[0][0]}</h6>
                 </div>
@@ -359,7 +359,7 @@ const renderCurrentWeather = (forecastData) => {
                 <div class="col-sm">
                     <h2 class="card-subtitle">${Math.floor(forecastData.days[0][0].main.feels_like)}
                     <span class="position-absolute fs-3 mt-1">°F</span></h2>
-                    <p>Feels Like</p>
+                    <p>feels like</p>
                 </div>
             </div>
         </div>
@@ -422,14 +422,16 @@ const renderCurrentWeather = (forecastData) => {
 const renderCoords = (forecastData) => {
     // console.log(data);
     let html = "";
-    html = `<h5>Longitude:
+    html = `<div class="d-flex flex-column">
+            <h2 class="m-0">Longitude:</h2>
             <br>
-            <span id="currentLng">${forecastData.coordinates.lon}</span>
-            </h5>
-            <h5>Latitude:
+            <span id="currentLng" class="p-1 fs-3">${forecastData.coordinates.lon}</span>
+            </div>
+
+            <div class="d-flex flex-column">
+            <h2 class="mt-1">Latitude:</h2>
             <br>
-            <span id="currentLat">${forecastData.coordinates.lat}</span>
-            </h5>
+            <span id="currentLat" class="p-1 fs-3">${forecastData.coordinates.lat}</span>
             </div>`;
 
     return displayCoords.html(html);
@@ -489,10 +491,19 @@ const renderDayOneCard = (forecastData) => {
                  <div class="card-header rounded-pill border border-3 border-dark bg-light text-dark p-0">
                 <span>${dayData.description[0][i]}</span>
                 </div>
-                 <ul class="list-group list-group-flush">
-                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-wind"></i> ${Math.floor(dayData.windSpeed[0][i])} mph</li>
-                <li class="list-group-item border-bottom border-3"><i class="fa-solid fa-cloud-arrow-down"></i> ${dayData.pressure[0][i]} inHg</li>
-                <li class="list-group-item"><i class="fa-solid fa-droplet"></i> ${dayData.humidity[0][i]}%</li>
+                 <ul class="list-group list-group-flush text-start">
+                <li class="list-group-item border-bottom border-3 d-flex">
+                    <i class="fa-solid fa-wind flex-grow-1"></i>
+                    <span class="fw-bold">${Math.floor(dayData.windSpeed[0][i])} mph</span>
+                </li>
+                <li class="list-group-item border-bottom border-3 d-flex">
+                    <i class="fa-solid fa-cloud-arrow-down flex-grow-1"></i>
+                    <span class="fw-bold">${dayData.pressure[0][i]} inHg</span>
+                </li>
+                <li class="list-group-item d-flex">
+                    <i class="fa-solid fa-droplet flex-grow-1"></i>
+                    <span class="fw-bold">${dayData.humidity[0][i]}%</span>
+                </li>
                  </ul>                      
                 </div>
                 </div>`

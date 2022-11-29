@@ -1,6 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Urbanist', sans-serif;
+}
+
+nav h5, header h1, #showToday h1, #showToday h2, #showToday span, th, .carousel-item .card h5, .carousel-item .card .card-header, #showCoords h2, .carousel-item .card li span {
+    font-family: 'Staatliches', cursive !important;
 }
 
 nav {
@@ -18,6 +23,20 @@ nav button {
 
 #topContent {
     background-color: #F8FFF4;
+}
+
+#topContent h1 {
+    font-size: 4.5rem;
+}
+
+#topContent h4 {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+#showToday h6, #showToday .card-header p {
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 #showToday h1 {
@@ -165,6 +184,10 @@ tr span {
     text-shadow: 2px 2px white;
 }
 
+.card li {
+    font-size: 1.25rem !important;
+}
+
 #cardOne {
     background-color: #50723C !important;
     border-color: #DDFC74 !important;
@@ -229,11 +252,6 @@ tr span {
 #cardFive .list-group-item {
     border-color: #C179B9 !important;
 }
-
-/*.carousel-control-prev:hover, .carousel-control-next:hover {*/
-/*    background-color: #333533 !important;*/
-/*    opacity: 50%;*/
-/*}*/
 
 #map {
     width: 100%;
