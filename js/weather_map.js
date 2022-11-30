@@ -330,7 +330,7 @@ const placeMarkerAndPopup = (forecastData, token, map) => {
 const renderCityCountry = (forecastData) => {
     // console.log(data);
     let html = "";
-    html = `<h4>${forecastData.cityName}, ${forecastData.countryName}</h4>`;
+    html = `<h4 class="fst-light fs-1">${forecastData.cityName}, ${forecastData.countryName}</h4>`;
 
     return displayCityName.html(html);
 }
@@ -371,44 +371,44 @@ const renderCurrentWeather = (forecastData) => {
                 <div class="col-6 d-flex">
                     <div class="d-flex flex-grow-1">
                         <i class="fa-solid fa-temperature-quarter fs-5 me-1"></i>
-                        <p>Min:</p>
+                        <p class="fs-5">Min:</p>
                     </div>
-                    <span class="fw-bold">${Math.floor(forecastData.days.minTemp[0][0])}°F</span>
+                    <span class="fs-4">${Math.floor(forecastData.days.minTemp[0][0])}°F</span>
                 </div>
                 <div class="col-6 d-flex">
                     <div class="d-flex flex-grow-1">
                         <i class="fa-solid fa-temperature-full fs-5 me-1"></i>
-                        <p>Max:</p>
+                        <p class="fs-5">Max:</p>
                     </div>
-                    <span class="fw-bold">${Math.floor(forecastData.days.maxTemp[0][0])}°F</span>
+                    <span class="fs-4">${Math.floor(forecastData.days.maxTemp[0][0])}°F</span>
                 </div>
                     <div class="col-6 d-flex">
                         <div class="d-flex flex-grow-1">
                             <i class="fa-solid fa-wind fs-5 me-1"></i>
-                            <p>Speed:</p>
+                            <p class="fs-5">Speed:</p>
                         </div>
-                        <span class="fw-bold">${Math.floor(forecastData.days.windSpeed[0][0])}mph</span>
+                        <span class="fs-4">${Math.floor(forecastData.days.windSpeed[0][0])}mph</span>
                     </div>
                     <div class="col-6 d-flex">
                         <div class="d-flex flex-grow-1">
                             <i class="fa-solid fa-droplet fs-5 me-1"></i>
-                            <p>Humidity:</p>
+                            <p class="fs-5">Humidity:</p>
                         </div> 
-                        <span class="fw-bold">${forecastData.days.humidity[0][0]}%</span>
+                        <span class="fs-4">${forecastData.days.humidity[0][0]}%</span>
                     </div>
                     <div class="col-6 d-flex">
                         <div class="d-flex flex-grow-1">
                             <i class="fa-solid fa-cloud-arrow-down fs-5 me-1"></i>
-                            <p>Pressure:</p>
+                            <p class="fs-5">Pressure:</p>
                         </div>
-                        <span class="fw-bold">${forecastData.days.pressure[0][0]}inHg</span>
+                        <span class="fs-4">${forecastData.days.pressure[0][0]}inHg</span>
                     </div>
                     <div class="col-6 d-flex">
                         <div class="d-flex flex-grow-1">
                             <i class="fa-solid fa-eye fs-5 me-1"></i>
-                            <p>Visibility:</p>
+                            <p class="fs-5">Visibility:</p>
                         </div>
-                        <span class="fw-bold">${forecastData.days[0][0].visibility}m</span>
+                        <span class="fs-4">${forecastData.days[0][0].visibility}m</span>
                     </div>
             </div>
         </div>
@@ -425,13 +425,13 @@ const renderCoords = (forecastData) => {
     html = `<div class="d-flex flex-column">
             <h2 class="m-0">Longitude:</h2>
             <br>
-            <span id="currentLng" class="p-1 fs-3">${forecastData.coordinates.lon}</span>
+            <span id="currentLng" class="p-1 fs-3 text-light">${forecastData.coordinates.lon}</span>
             </div>
 
             <div class="d-flex flex-column">
             <h2 class="mt-1">Latitude:</h2>
             <br>
-            <span id="currentLat" class="p-1 fs-3">${forecastData.coordinates.lat}</span>
+            <span id="currentLat" class="p-1 fs-3 text-light">${forecastData.coordinates.lat}</span>
             </div>`;
 
     return displayCoords.html(html);

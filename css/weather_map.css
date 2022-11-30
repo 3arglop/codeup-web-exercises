@@ -16,9 +16,15 @@ nav h5 {
     margin-top: .8rem;
 }
 
+nav input {
+    width: 20vw !important;
+    height: 40px !important;
+}
+
 nav button {
     position: relative;
     right: 3rem;
+    --bs-btn-border-color: none !important;
 }
 
 #topContent {
@@ -27,11 +33,6 @@ nav button {
 
 #topContent h1 {
     font-size: 4.5rem;
-}
-
-#topContent h4 {
-    font-size: 2rem;
-    font-weight: 900;
 }
 
 #showToday h6, #showToday .card-header p {
@@ -48,7 +49,7 @@ nav button {
 }
 
 main {
-    background-color: #CAB6CD;
+    background-color: #816C61;
 }
 
 #firstSlide {
@@ -117,8 +118,6 @@ tr span {
     font-size: 1rem;
     margin-top: .2rem;
 }
-
-/*font-weight: 500;*/
 
 #dateTable {
     color: #CDC5B4;
