@@ -4,7 +4,7 @@ body {
     font-family: 'Urbanist', sans-serif;
 }
 
-nav h5, header h1, #showToday h1, #showToday h2, #showToday span, th, .carousel-item .card h5, .carousel-item .card .card-header, #showCoords h2, .carousel-item .card li span {
+nav h5, header h1, #showToday h1, #showToday h2, #showToday span, th, .carousel-item .card h5, .carousel-item .card .card-header, #showCoords h2, .carousel-item .card li span, footer h1 {
     font-family: 'Staatliches', cursive !important;
 }
 
@@ -57,7 +57,7 @@ main {
     background-image: url("../IMG/sandy-view.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 60vh;
+    height: 63vh;
 }
 
 #secondSlide {
@@ -264,4 +264,8 @@ tr span {
 
 footer {
     background-color: #DDFC74;
+}
+
+footer h1 {
+    text-shadow: 2px 2px white;
 }
